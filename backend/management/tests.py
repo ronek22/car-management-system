@@ -22,4 +22,4 @@ class CarTestCase(TestCase):
             email="admin@admin.com"
         )
 
-        self.assertEqual(customer.first_name, "Jan")
+        self.assertEqual(customer.first_name, "Marek")
