@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 # Create your tests here.
-from management.models import Make, Car
+from management.models import Make, Car, Customer
 
 
 class CarTestCase(TestCase):
@@ -13,3 +13,13 @@ class CarTestCase(TestCase):
 
     def test_creating_car(self):
         self.assertEqual(str(self.car), "2010 AUDI A4")
+
+    def test_creating_customer(self):
+        customer = Customer.objects.create(
+            first_name="Jan",
+            last_name="Kowalski",
+            phone="505333120",
+            email="admin@admin.com"
+        )
+
+        self.assertEqual(customer.first_name, "Jan")
