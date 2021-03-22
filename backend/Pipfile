@@ -6,6 +6,12 @@ name = "pypi"
 [packages]
 django = "*"
 django-rest-framework = "*"
+drf-rw-serializers = "*"
+coreapi = "*"
+coreapi-cli = "*"
+markdown = "*"
+pyaml = "*"
+drf-writable-nested = "*"
 
 [dev-packages]
 
