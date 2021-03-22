@@ -12,6 +12,7 @@ coreapi-cli = "*"
 markdown = "*"
 pyaml = "*"
 drf-writable-nested = "*"
+psycopg2 = "*"
 
 [dev-packages]
 

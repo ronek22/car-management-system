@@ -1,0 +1,33 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment: 
+      - POSTGRES_DB=postgres
+      - POSRGRES_USER=postgres
+      - POSRGRES_PASSWORD=postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend:/code
+      - static_vol:/code/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - frontend
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockefile.dev
+    ports:
+      - "4200:4200"
+    volumes:
+      - /opt/app/node_modules
+      - ./frontend:/opt/app
+    
