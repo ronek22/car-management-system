@@ -1,8 +1,13 @@
-from django.urls import path
+from rest_framework.routers import DefaultRouter
 
-from management.views import OfferListView, OfferCreateView
+from management import views
 
-urlpatterns = [
-    path('', OfferListView.as_view(), name='offer-list'),
-    path('create', OfferCreateView.as_view(), name='offer-create'),
-]
+app_name = 'management'
+router = DefaultRouter()
+
+router.register(r'customers', views.CustomerViewSet)
+router.register(r'employees', views.EmployeeViewSet)
+router.register(r'brokers', views.BrokerViewSet)
+router.register(r'makes', views.MakeViewSet)
+router.register(r'cars', views.CarViewSet)
+router.register(r'offers', views.OfferViewSet)

@@ -1,67 +1,50 @@
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework import generics
+from rest_framework import generics, viewsets
+from management.models import Customer, Offer, Employee, Broker, Car, Make
+from management.serializers import OfferSerializer, CustomerSerializer, EmployeeSerializer, BrokerSerializer, \
+    CarSerializer, MakeSerializer
 
-from management.models import Offer
-from management.serializers import OfferSerializer
+
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
 
 
-# class OfferViewSet(viewsets.ModelViewSet):
-#     """
-#     retrieve:
-#     Return the given offer.
-#
-#     list:
-#     Return a list of all existing offers
-#
-#     create:
-#     Create a new offer instance
-#     """
-#
+class EmployeeViewSet(viewsets.ModelViewSet):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+
+class BrokerViewSet(viewsets.ModelViewSet):
+    queryset = Broker.objects.all()
+    serializer_class = BrokerSerializer
+
+
+class MakeViewSet(viewsets.ModelViewSet):
+    queryset = Make.objects.all()
+    serializer_class = MakeSerializer
+
+
+class CarViewSet(viewsets.ModelViewSet):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+
+
+class OfferViewSet(viewsets.ModelViewSet):
+    queryset = Offer.objects.all()
+    serializer_class = OfferSerializer
+
+
+# class OfferListView(generics.ListAPIView):
 #     queryset = Offer.objects.all()
-#     serializer_class = OfferDetailSerializer
-#     # detail_serializer_class = OfferDetailSerializer
-#     ordering_fields = '__all__'
+#     serializer_class = OfferSerializer
 #
-#     # def get_serializer_class(self):
-#     #     """
-#     #     Determines which serializer to user `list` or `detail`
-#     #     """
-#     #     if self.action == 'retrieve':
-#     #         if hasattr(self, 'detail_serializer_class'):
-#     #             return self.detail_serializer_class
-#     #     return super().get_serializer_class()
 #
-#     def create(self, request):
-#         """
-#         to parse the incoming request and create a new offer or update existing
-#         """
-#
-#         car = request.data.pop('car')
-#         make = car.pop('make')
-#         employee = request.data.pop('employee')
-#         broker = request.data.pop('broker')
-#         customer = request.data.pop('customer')
-#         make = Make.objects.create_or_update(**make)
-#         car = Car.objects.create(**car, make=make)
-#         customer = Customer.objects.create(**customer)
-#         employee = Employee.objects.create(**employee)
-#         broker = Broker.objects.create(**broker)
-#         offer = Offer.objects.create(**request.data,
-#                                      car=car,
-#                                      customer=customer,
-#                                      employee=employee,
-#                                      broker=broker)
-#
-#         return Response(status=status.HTTP_201_CREATED)
+# class OfferCreateView(generics.CreateAPIView):
+#     queryset = Offer.objects.all()
+#     serializer_class = OfferSerializer
 
 
-class OfferListView(generics.ListAPIView):
-    queryset = Offer.objects.all()
-    serializer_class = OfferSerializer
 
-
-class OfferCreateView(generics.CreateAPIView):
-    queryset = Offer.objects.all()
-    serializer_class = OfferSerializer

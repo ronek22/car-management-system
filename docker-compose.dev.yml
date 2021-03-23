@@ -4,8 +4,8 @@ services:
     image: postgres
     environment: 
       - POSTGRES_DB=postgres
-      - POSRGRES_USER=postgres
-      - POSRGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
 
@@ -20,14 +20,18 @@ services:
       - "8000:8000"
     depends_on:
       - frontend
+      - db
 
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockefile.dev
+      dockerfile: Dockerfile.dev
     ports:
       - "4200:4200"
     volumes:
       - /opt/app/node_modules
       - ./frontend:/opt/app
+
+volumes:
+  static_vol:
     

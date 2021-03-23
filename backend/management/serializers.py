@@ -7,6 +7,11 @@ class MakeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Make
         fields = ('name',)
+        extra_kwargs = {
+            'name': {
+                'validators': [],
+            }
+        }
 
 
 class CarSerializer(serializers.ModelSerializer):
@@ -15,6 +20,13 @@ class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = ('make', 'model', 'year')
+
+    def create(self, validated_data):
+        make_data = validated_data.pop('make')
+        make, created = Make.objects.get_or_create(**make_data)
+        print(f"Created: {created}")
+        car = Car.objects.create(**validated_data, make=make)
+        return car
 
 
 class CustomerSerializer(serializers.ModelSerializer):
