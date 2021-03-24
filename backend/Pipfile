@@ -13,6 +13,7 @@ markdown = "*"
 pyaml = "*"
 drf-writable-nested = "*"
 psycopg2 = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

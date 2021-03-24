@@ -29,8 +29,8 @@ services:
     ports:
       - "4200:4200"
     volumes:
-      - /opt/app/node_modules
       - ./frontend:/opt/app
+      - /frontend/node_modules
 
 volumes:
   static_vol:
