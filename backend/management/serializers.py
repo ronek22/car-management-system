@@ -19,7 +19,7 @@ class CarSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Car
-        fields = ('make', 'model', 'year')
+        fields = ('id', 'make', 'model', 'year')
 
     def create(self, validated_data):
         make_data = validated_data.pop('make')

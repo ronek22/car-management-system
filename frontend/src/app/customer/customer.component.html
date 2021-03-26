@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div fxLayout="row" fxLayoutAlign="end center" fxFlex>
+      <button mat-raised-button color="accent">
+        <mat-icon>add</mat-icon>
+        Dodaj klienta
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<ngx-datatable
+  class="material"
+  [columnMode]="'flex'"
+  [rows]="customers"
+  [columns]="columns"
+  [loadingIndicator]="loadingIndicator"
+  headerHeight="50"
+  footerHeight="50"
+  rowHeight="50"
+></ngx-datatable>

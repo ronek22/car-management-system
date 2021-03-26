@@ -1,34 +1,38 @@
-import {Input, NgModule} from '@angular/core';
+import { NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HomeComponent} from './home/home.component';
-import {PanelMenuModule} from 'primeng/panelmenu';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavbarComponent} from './navbar/navbar.component';
-import {MenubarModule} from 'primeng/menubar';
-import {ButtonModule} from 'primeng/button';
-import {InputTextModule} from 'primeng/inputtext';
-import {SharedModule} from 'primeng/api';
-import {TableModule} from 'primeng/table';
-import { ContentComponent } from './content/content.component';
-import {ToolbarModule} from 'primeng/toolbar';
-import {SidebarModule} from 'primeng/sidebar';
+import { OfferComponent } from './offer/offer.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from "@angular/material/button";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatListModule} from "@angular/material/list";
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {MatInputModule} from '@angular/material/input';
+import {MatTabsModule} from '@angular/material/tabs';
+import { VehicleComponent } from './vehicle/vehicle.component';
+import { CustomerComponent } from './customer/customer.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { BrokerComponent } from './broker/broker.component';
+import { OfferDialogComponent } from './offer/dialogs/offer-dialog.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavbarComponent,
-    ContentComponent
+    OfferComponent,
+    VehicleComponent,
+    CustomerComponent,
+    EmployeeComponent,
+    BrokerComponent,
+    OfferDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,22 +41,18 @@ import {MatListModule} from "@angular/material/list";
     HttpClientXsrfModule.withOptions({cookieName: 'csrftoken', headerName: 'X-CSRFToken'}),
     AppRoutingModule,
 
-    PanelMenuModule,
-    MenubarModule,
-    ButtonModule,
-    InputTextModule,
-    SharedModule,
-    TableModule,
-    ToolbarModule,
-    SidebarModule,
-
     FlexLayoutModule,
+
+    NgxDatatableModule,
 
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatInputModule,
+    MatTabsModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
