@@ -2,6 +2,8 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Offer} from '../models/models';
 import {OfferService} from '../services/offer.service';
 import {ColumnMode, DatatableComponent, SelectionType} from '@swimlane/ngx-datatable';
+import {OfferDialogComponent} from "./dialogs/offer-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-offers',
@@ -29,7 +31,7 @@ export class OfferComponent implements OnInit, AfterViewInit {
   selected = [];
   SelectionType = SelectionType;
 
-  constructor(private offerService: OfferService) {
+  constructor(private offerService: OfferService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -55,6 +57,17 @@ onSelect({selected}): void {
 
 onActivate(event): void {
     console.log('Activate event', event);
+}
+
+addOffer(): void {
+    const dialogRef = this.dialog.open(OfferDialogComponent, {
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // CONSOLE LOG VIN NUMBER
+      console.log(`Dialog result: ${result.vin}`);
+    });
 }
 
 }

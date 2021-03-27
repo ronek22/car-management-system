@@ -1,1 +1,159 @@
-<p>offer-dialog works!</p>
+<h2 mat-dialog-title>Dodaj ofertę</h2>
+<mat-dialog-content>
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="carForm">
+      <form [formGroup]="carForm">
+        <ng-template matStepLabel>Dane o importowanym pojezdzie</ng-template>
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label>Marka</mat-label>
+            <input matInput formControlName="make" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Model</mat-label>
+            <input matInput formControlName="model" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Rocznik</mat-label>
+            <input matInput formControlName="year" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>VIN</mat-label>
+            <input matInput formControlName="vin" required>
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-button matStepperNext>Dalej</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="customerForm">
+      <form [formGroup]="customerForm">
+        <ng-template matStepLabel>Dane o kliencie</ng-template>
+        <div fxLayout="column">
+          <div fxLayout="row" [fxLayoutGap]="rowGap">
+            <mat-form-field fxFlex>
+              <mat-label>Imię</mat-label>
+              <input matInput formControlName="firstName" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex>
+              <mat-label>Nazwisko</mat-label>
+              <input matInput formControlName="lastName" required>
+            </mat-form-field>
+          </div>
+          <div fxLayout="row" [fxLayoutGap]="rowGap">
+            <mat-form-field fxFlex>
+              <mat-label>Numer telefonu</mat-label>
+              <input matInput formControlName="phone" required>
+            </mat-form-field>
+
+            <mat-form-field fxFlex>
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end end">
+          <button mat-button matStepperNext>Dalej</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="brokerForm">
+      <form [formGroup]="brokerForm">
+        <ng-template matStepLabel>Dane o brokerze</ng-template>
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label>Nazwa</mat-label>
+            <input matInput formControlName="name" required>
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-button matStepperNext>Dalej</button>
+          </div>
+        </div>
+
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="employeeForm">
+      <form [formGroup]="employeeForm">
+        <ng-template matStepLabel>Dane o pracowniku</ng-template>
+        <div fxLayout="column">
+          <mat-form-field>
+            <mat-label>Imie</mat-label>
+            <input matInput formControlName="firstName" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Nazwisko</mat-label>
+            <input matInput formControlName="lastName" required>
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-button matStepperNext>Dalej</button>
+          </div>
+        </div>
+
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="offerForm">
+      <form [formGroup]="offerForm">
+        <ng-template matStepLabel>Dane o ofercie</ng-template>
+        <div fxLayout="column">
+          <div fxLayout="row" [fxLayoutGap]="rowGap">
+            <mat-form-field appearance="fill">
+              <mat-label>Opłata za transport</mat-label>
+              <input matInput formControlName='payForTransport' [matDatepicker]="payTrans">
+              <mat-datepicker-toggle matSuffix [for]="payTrans"></mat-datepicker-toggle>
+              <mat-datepicker #payTrans></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Wysyłka dokumentów</mat-label>
+              <input matInput formControlName='shipDocumentsToAgency' [matDatepicker]="ship">
+              <mat-datepicker-toggle matSuffix [for]="ship"></mat-datepicker-toggle>
+              <mat-datepicker #ship></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Dodatkowe dane</mat-label>
+            <textarea matInput formControlName="additionalData"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Over Fracht</mat-label>
+            <input matInput type="number" formControlName="overFracht">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Over Odprawa</mat-label>
+            <input matInput type="number" formControlName="overOdprawa">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Over Transport To PL</mat-label>
+            <input matInput type="number" formControlName="overTransportToPl">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Over HST</mat-label>
+            <input matInput type="number" formControlName="overHST">
+          </mat-form-field>
+
+          <div fxLayout="row" fxLayoutAlign="space-between end">
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-raised-button color="primary" (click)="getData()" [mat-dialog-close]="data">Dodaj</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Anuluj</button>
+</mat-dialog-actions>
+
