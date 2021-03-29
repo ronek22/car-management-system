@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'employees', component: EmployeeComponent},
   {path: 'brokers', component: BrokerComponent},
 
-  {path: '*', component: OfferComponent}
+  {path: '**', redirectTo: 'offers'}
 ];
 
 @NgModule({

@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - static_vol:/code/static
+    env_file:
+      ./backend/.env
+    command: gunicorn --workers=3 --bind 0.0.0.0:8000 conf.wsgi
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - static_vol:/usr/share/nginx/static
+    depends_on:
+      - backend
+
+volumes:
+  static_vol:
