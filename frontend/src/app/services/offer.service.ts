@@ -19,14 +19,18 @@ export class OfferService {
   }
 
   getOfferDetail(id: number): Observable<Offer> {
-    return this.http.get<Offer>(`${this.baseUrl}/${id}`);
+    return this.http.get<Offer>(`${this.baseUrl}/${id}/`);
   }
 
   addOffer(offer: Offer): Observable<Offer> {
     return this.http.post<Offer>(`${this.baseUrl}/`, offer);
   }
 
+  editOffer(offer: any): Observable<Offer> {
+    return this.http.patch<Offer>(`${this.baseUrl}/${offer.id}/`, offer);
+  }
+
   deleteOffer(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/${id}`);
+    return this.http.delete<any>(`${this.baseUrl}/${id}/`);
   }
 }

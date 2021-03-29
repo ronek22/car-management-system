@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h2 mat-dialog-title>Edytuj pojazd</h2>
+  <mat-dialog-content>
+    <form [formGroup]="offerForm">
+      <div fxLayout="column" class="form__input">
+        <mat-form-field appearance="fill">
+          <mat-label>Wybierz pojazd</mat-label>
+          <mat-select formControlName="car" [compareWith]="compareCar">
+            <mat-option *ngFor="let car of availableCars$|async"
+                        [value]="car">{{car.make.name}} {{car.model}} {{car.year}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>VIN</mat-label>
+          <input matInput formControlName="vin" required>
+          <mat-error>Nieprawidłowy numer VIN!</mat-error>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between end">
+          <button mat-button mat-dialog-close>Anuluj</button>
+          <button mat-raised-button color="primary" [disabled]="!offerForm.valid" (click)="getData()"
+                  [mat-dialog-close]="offer">Edytuj
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

@@ -32,6 +32,15 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import {MatCardModule} from "@angular/material/card";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
+import { VehicleDialogComponent } from './vehicle/vehicle-dialog/vehicle-dialog.component';
+import { CustomerDialogComponent } from './customer/customer-dialog/customer-dialog.component';
+import { EmployeeDialogComponent } from './employee/employee-dialog/employee-dialog.component';
+import { BrokerDialogComponent } from './broker/broker-dialog/broker-dialog.component';
+import { EditOfferComponent } from './offer/offer-detail/edit-offer/edit-offer.component';
+import { EditCustomerComponent } from './offer/offer-detail/edit-customer/edit-customer.component';
+import { EditEmployeeComponent } from './offer/offer-detail/edit-employee/edit-employee.component';
+import { EditBrokerComponent } from './offer/offer-detail/edit-broker/edit-broker.component';
+import { EditVehicleComponent } from './offer/offer-detail/edit-vehicle/edit-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +54,15 @@ import {MatSelectModule} from "@angular/material/select";
     OfferDialogComponent,
     OfferDetailComponent,
     ConfirmationDialogComponent,
+    VehicleDialogComponent,
+    CustomerDialogComponent,
+    EmployeeDialogComponent,
+    BrokerDialogComponent,
+    EditOfferComponent,
+    EditCustomerComponent,
+    EditEmployeeComponent,
+    EditBrokerComponent,
+    EditVehicleComponent,
   ],
   imports: [
     BrowserModule,

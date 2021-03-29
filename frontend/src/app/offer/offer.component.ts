@@ -2,11 +2,11 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Offer} from '../models/models';
 import {OfferService} from '../services/offer.service';
 import {ColumnMode, DatatableComponent, SelectionType} from '@swimlane/ngx-datatable';
-import {OfferDialogComponent} from "./dialogs/offer-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import {map, switchMap} from "rxjs/operators";
+import {OfferDialogComponent} from './dialogs/offer-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {map, switchMap} from 'rxjs/operators';
 import {empty} from "rxjs";
-import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-dialog.component";
+import {ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-offers',

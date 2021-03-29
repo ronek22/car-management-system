@@ -1,0 +1,23 @@
+<div class="container">
+
+  <h2 mat-dialog-title>Edytuj klienta</h2>
+  <mat-dialog-content>
+    <form [formGroup]="offerForm">
+       <div fxLayout="column" class="form__input">
+            <mat-form-field appearance="fill">
+              <mat-label>Wybierz klienta</mat-label>
+              <mat-select formControlName="customer" [compareWith]="compareCustomer">
+                <mat-option *ngFor="let customer of availableCustomers$|async"
+                            [value]="customer">{{customer.first_name}} {{customer.last_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between end">
+          <button mat-button mat-dialog-close>Anuluj</button>
+          <button mat-raised-button color="primary" (click)="getData()"
+                  [mat-dialog-close]="offer">Edytuj</button>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

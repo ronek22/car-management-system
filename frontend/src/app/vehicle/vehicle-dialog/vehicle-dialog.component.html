@@ -1,0 +1,26 @@
+<div class="container">
+
+<h2 mat-dialog-title>Dodaj pojazd</h2>
+<mat-dialog-content>
+  <form [formGroup]="carForm">
+        <div fxLayout="column" class="form__input" fxLayoutAlign="space-between">
+          <mat-form-field>
+            <mat-label>Marka</mat-label>
+            <input matInput formControlName="make" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Model</mat-label>
+            <input matInput formControlName="model" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Rocznik</mat-label>
+            <input matInput formControlName="year" required>
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutAlign="space-between end">
+            <button mat-button mat-dialog-close>Anuluj</button>
+            <button mat-raised-button color="primary" (click)="getData()" [mat-dialog-close]="data" >{{vehicle ? "Edytuj"  : "Dodaj"}}</button>
+          </div>
+        </div>
+      </form>
+</mat-dialog-content>
+</div>

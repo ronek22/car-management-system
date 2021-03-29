@@ -1,14 +1,34 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <div fxLayout="row" fxLayoutAlign="end center" fxFlex>
-      <button mat-raised-button color="accent">
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+      <button mat-raised-button color="accent" (click)="addVehicle()">
         <mat-icon>add</mat-icon>
-        Dodaj pojazd
+        Dodaj
       </button>
+
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+
+
+      <button mat-raised-button color="primary"
+              [disabled]="selected.length === 0"
+              (click)="editVehicle()"
+      >
+        <mat-icon>edit</mat-icon>
+        Edytuj
+      </button>
+
+      <button mat-raised-button color="warn" [disabled]="selected.length === 0"
+      (click)="openConfirmationDialog()">
+        <mat-icon>delete</mat-icon>
+        Usuń
+      </button>
+              </div>
+
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
 <ngx-datatable
+  [loadingIndicator]="isLoading"
   class="material"
   [columnMode]="'flex'"
   [rows]="offers"
@@ -16,4 +36,7 @@
   headerHeight="50"
   footerHeight="50"
   rowHeight="50"
+  [selected]="selected"
+  [selectCheck]="singleSelectCheck"
+  [selectionType]="SelectionType.single"
 ></ngx-datatable>

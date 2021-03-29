@@ -50,7 +50,8 @@ export class OfferDialogComponent implements OnInit {
       make: ['', Validators.required],
       model: ['', Validators.required],
       year: ['', Validators.required],
-      vin: ['', Validators.required]
+      vin: ['', [Validators.required, Validators.pattern(
+          '^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$')]]
     });
 
     this.customerForm = this.fb.group({

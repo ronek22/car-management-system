@@ -21,15 +21,16 @@
             <mat-icon>drive_eta</mat-icon>
           </div>
           <mat-card-title>Pojazd</mat-card-title>
-          <mat-card-subtitle>{{offer.vin}}</mat-card-subtitle>
+          <mat-card-subtitle>Dane dot. importowanego pojazdu</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <p>Marka<span>{{offer.car.make.name}}</span></p>
           <p>Model<span>{{offer.car.model}}</span></p>
           <p>Rocznik<span>{{offer.car.year}}</span></p>
+          <p>VIN<span>{{offer.vin}}</span></p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary">EDYTUJ</button>
+          <button mat-stroked-button color="primary" (click)="editOffer('vehicle')">EDYTUJ</button>
         </mat-card-actions>
       </mat-card>
 
@@ -57,7 +58,7 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary">EDYTUJ</button>
+          <button mat-stroked-button color="primary" (click)="editOffer('offer')">EDYTUJ</button>
         </mat-card-actions>
       </mat-card>
 
@@ -79,7 +80,7 @@
           <p>Adres email<span>{{offer.customer.email}}</span></p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary">EDYTUJ</button>
+          <button mat-stroked-button color="primary" (click)="editOffer('customer')">EDYTUJ</button>
         </mat-card-actions>
       </mat-card>
 
@@ -97,7 +98,7 @@
           <p>Nazwisko<span>{{offer.employee.last_name}}</span></p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary">EDYTUJ</button>
+          <button mat-stroked-button color="primary" (click)="editOffer('employee')">EDYTUJ</button>
         </mat-card-actions>
       </mat-card>
 
@@ -113,7 +114,8 @@
           <p>Nazwa<span>{{offer.broker.name}}</span></p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary">EDYTUJ</button>
+          <button mat-stroked-button color="primary" (click)="editOffer('broker')">EDYTUJ</button>
+
         </mat-card-actions>
       </mat-card>
 

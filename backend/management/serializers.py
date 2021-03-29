@@ -6,7 +6,8 @@ from management.models import Make, Car, Customer, Offer, Broker, Employee
 class MakeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Make
-        fields = ('name',)
+        fields = ('id', 'name',)
+        read_only_fields = ['id']
         extra_kwargs = {
             'name': {
                 'validators': [],
@@ -20,31 +21,44 @@ class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = ('id', 'make', 'model', 'year')
+        read_only_fields = ['id']
 
     def create(self, validated_data):
         make_data = validated_data.pop('make')
         make, created = Make.objects.get_or_create(**make_data)
-        print(f"Created: {created}")
         car = Car.objects.create(**validated_data, make=make)
         return car
+
+    def update(self, instance, validated_data):
+        make_data = validated_data.pop('make')
+        make, created = Make.objects.get_or_create(**make_data)
+        instance.make = make
+        instance.model = validated_data['model']
+        instance.year = validated_data['year']
+        instance.save()
+        return instance
+
 
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
-        fields = ('first_name', 'last_name', 'phone', 'email')
+        fields = ('id','first_name', 'last_name', 'phone', 'email')
+        read_only_fields = ['id']
 
 
 class BrokerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Broker
-        fields = ('name',)
+        fields = ('id', 'name',)
+        read_only_fields = ['id']
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ('first_name', 'last_name')
+        fields = ('id', 'first_name', 'last_name')
+        read_only_fields = ['id']
 
 
 class OfferListSerializer(serializers.ModelSerializer):
@@ -63,6 +77,7 @@ class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
         fields = '__all__'
+        read_only_fields = ['id']
 
     def to_internal_value(self, data):
         if data.get('over_fracht') == '':
@@ -92,3 +107,37 @@ class OfferSerializer(serializers.ModelSerializer):
                                      broker=broker, employee=employee, **validated_data)
 
         return offer
+
+    def update(self, instance, validated_data):
+        not_fk = ('vin', 'pay_for_transport', 'ship_documents_to_agency',
+                  'over_fracht', 'over_odprawa', 'over_transport_to_pl', 'over_hst')
+
+        car_data = validated_data.pop('car', None)
+        if car_data:
+            make_data = car_data.pop('make')
+            make = Make.objects.get(**make_data)
+            car = Car.objects.get(**car_data, make=make)
+            if car: instance.car = car
+
+        customer_data = validated_data.pop('customer', None)
+        if customer_data:
+            customer = Customer.objects.get(**customer_data)
+            if customer: instance.customer = customer
+
+        broker_data = validated_data.pop('broker', None)
+        if broker_data:
+            broker = Broker.objects.get(**broker_data)
+            if broker: instance.broker = broker
+
+        employee_data = validated_data.pop('employee', None)
+        if employee_data:
+            employee = Employee.objects.get(**employee_data)
+            if employee: instance.employee = employee
+
+        for key in not_fk:
+            setattr(instance, key, validated_data.pop(key, getattr(instance, key, None)))
+
+        instance.save()
+        return instance
+
+
