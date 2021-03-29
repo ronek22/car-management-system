@@ -27,6 +27,11 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { OfferDetailComponent } from './offer/offer-detail/offer-detail.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -38,6 +43,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     EmployeeComponent,
     BrokerComponent,
     OfferDialogComponent,
+    OfferDetailComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +69,10 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatDialogModule,
     MatStepperModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule,
+    MatRadioModule,
+    MatSelectModule,
 
   ],
   providers: [MatDatepickerModule],

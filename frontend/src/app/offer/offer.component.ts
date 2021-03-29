@@ -4,6 +4,9 @@ import {OfferService} from '../services/offer.service';
 import {ColumnMode, DatatableComponent, SelectionType} from '@swimlane/ngx-datatable';
 import {OfferDialogComponent} from "./dialogs/offer-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {map, switchMap} from "rxjs/operators";
+import {empty} from "rxjs";
+import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-dialog.component";
 
 @Component({
   selector: 'app-offers',
@@ -11,6 +14,8 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./offer.component.scss']
 })
 export class OfferComponent implements OnInit, AfterViewInit {
+
+  isLoading = true;
 
   @ViewChild(DatatableComponent) ngxDatatable: DatatableComponent;
   offers: Offer[];
@@ -40,34 +45,86 @@ export class OfferComponent implements OnInit, AfterViewInit {
         ...offer,
         vehicle: `${offer.car.make.name} ${offer.car.model}`
       }));
+      this.isLoading = false;
     });
   }
 
   ngAfterViewInit(): void {
-  this.ngxDatatable.columnMode = ColumnMode.force;
-}
-
-singleSelectCheck = (row: any) => {
-     return this.selected.indexOf(row) === -1;
+    this.ngxDatatable.columnMode = ColumnMode.force;
   }
 
-onSelect({selected}): void {
+  singleSelectCheck = (row: any) => {
+    return this.selected.indexOf(row) === -1;
+  }
+
+  onSelect({selected}): void {
     console.log('Select event', this.selected);
-}
+  }
 
-onActivate(event): void {
+  onActivate(event): void {
     console.log('Activate event', event);
-}
+  }
 
-addOffer(): void {
+  addOffer(): void {
     const dialogRef = this.dialog.open(OfferDialogComponent, {
-      data: {}
+      data: {},
+      disableClose: true
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // CONSOLE LOG VIN NUMBER
-      console.log(`Dialog result: ${result.vin}`);
+    dialogRef.afterClosed().pipe(switchMap(result => {
+      if (!result) {
+        return empty();
+      }
+      return this.offerService.addOffer(result);
+    })).pipe(switchMap(() => {
+        this.isLoading = true;
+        return this.offerService.getOfferList();
+      }),
+      map(data => {
+        this.isLoading = false;
+        return data;
+      })).subscribe(response => {
+      this.offers = response.map(offer => ({
+        ...offer,
+        vehicle: `${offer.car.make.name} ${offer.car.model}`
+      }));
     });
-}
+  }
+
+  openConfirmationDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      disableClose: false
+    });
+
+    dialogRef.componentInstance.confirmTitle = 'Usuwanie oferty';
+    dialogRef.componentInstance.confirmMessage = 'Jesteś pewny? Zmiany nie mogą zostać cofnięte.';
+    dialogRef.componentInstance.confirmAction = 'USUŃ';
+
+    dialogRef.afterClosed().pipe(
+      switchMap(result => {
+        if (!result) {
+          return empty();
+        }
+
+        return this.offerService.deleteOffer(this.selected[0].id);
+      })).pipe(switchMap(() => {
+        this.isLoading = true;
+        return this.offerService.getOfferList();
+
+      }),
+      map(data => {
+        this.isLoading = false;
+        return data;
+      })).subscribe(response => {
+      this.offers = response.map(offer => ({
+        ...offer,
+        vehicle: `${offer.car.make.name} ${offer.car.model}`
+      }));
+
+      this.selected = [];
+
+    });
+  }
+
 
 }

@@ -1,12 +1,12 @@
 export interface Offer {
-  id: number;
+  id?: number;
   car: Car;
   customer: Customer;
   broker: Broker;
   employee: Employee;
   vin: string;
-  pay_for_transport: Date;
-  ship_documents_to_agency: Date;
+  pay_for_transport: Date|string;
+  ship_documents_to_agency: Date|string;
   additional_data: string;
   over_fracht: number;
   over_odprawa: number;

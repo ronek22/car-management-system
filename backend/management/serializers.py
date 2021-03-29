@@ -64,6 +64,18 @@ class OfferSerializer(serializers.ModelSerializer):
         model = Offer
         fields = '__all__'
 
+    def to_internal_value(self, data):
+        if data.get('over_fracht') == '':
+            data['over_fracht'] = 0
+        if data.get('over_odprawa') == '':
+            data['over_odprawa'] = 0
+        if data.get('over_transport_to_pl') == '':
+            data['over_transport_to_pl'] = 0
+        if data.get('over_hst') == '':
+            data['over_hst'] = 0
+
+        return super(OfferSerializer, self).to_internal_value(data)
+
     def create(self, validated_data):
         car_data = validated_data.pop('car', None)
         make_data = car_data.pop('make')

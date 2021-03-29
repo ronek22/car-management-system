@@ -1,0 +1,65 @@
+.container {
+  padding: 20px;
+}
+
+
+.mat-card-header {
+  background-color: #f3f3f3 !important;
+  padding: 20px 20px 5px 20px !important;
+  margin-bottom: 10px !important;
+}
+
+.mat-card {
+  padding: 0 !important;
+}
+
+.mat-card-content {
+  padding: 0 20px !important;
+}
+
+.mat-card-actions {
+  padding: 20px !important;
+}
+
+.box {
+  background-color: white;
+
+  .heading {
+    color: #313131;
+    font-weight: 400;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dddddd;
+
+  }
+
+  p {
+    color: #636363;
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+
+  span {
+    color: #313131;
+    float: right;
+    font-weight: 400;
+  }
+
+  .finance {
+    border-top: 1px solid #dddddd;
+    padding-top: 15px;
+    background-color: #f3f3f3;
+    margin-bottom: 15px;
+
+    p {
+      text-align: center
+    }
+
+    p span {
+      text-align: center;
+      display: block;
+      float: none;
+      font-weight: 500;
+    }
+  }
+}

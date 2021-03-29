@@ -5,9 +5,11 @@ import {VehicleComponent} from './vehicle/vehicle.component';
 import {CustomerComponent} from './customer/customer.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {BrokerComponent} from './broker/broker.component';
+import {OfferDetailComponent} from "./offer/offer-detail/offer-detail.component";
 
 const routes: Routes = [
   {path: 'offers', component: OfferComponent},
+  {path: 'offer/:id', component: OfferDetailComponent},
   {path: 'vehicles', component: VehicleComponent},
   {path: 'clients', component: CustomerComponent},
   {path: 'employees', component: EmployeeComponent},
