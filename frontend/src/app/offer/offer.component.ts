@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {Offer} from '../models/models';
+import {AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Offer, Pagination, PaginationOffer} from '../models/models';
 import {OfferService} from '../services/offer.service';
 import {ColumnMode, DatatableComponent, SelectionType} from '@swimlane/ngx-datatable';
 import {OfferDialogComponent} from './dialogs/offer-dialog.component';
@@ -18,19 +18,27 @@ export class OfferComponent implements OnInit, AfterViewInit {
   isLoading = true;
 
   @ViewChild(DatatableComponent) ngxDatatable: DatatableComponent;
-  offers: Offer[];
+  offers: Offer;
+  pagination: Pagination;
   columns: any[] = [
     // {name: 'ID', prop: 'id', sortable: false},
-    {prop: 'vehicle', name: 'Pojazd'},
-    // {prop: 'car.model', name: 'Model'},
     {prop: 'car.year', name: 'Rocznik'},
+    {prop: 'car.make.name', name: 'Marka'},
+    {prop: 'car.model', name: 'Model'},
+
+    // {prop: 'vehicle', name: 'Pojazd'},
     {prop: 'vin', name: 'VIN', sortable: false},
-    {prop: 'pay_for_transport', name: 'Pay For Transport'},
-    {prop: 'ship_documents_to_agency', name: 'Ship documents to agency'},
+    {prop: 'customer.phone', name: 'Telefon', sortable: false},
+    {prop: 'customer.email', name: 'Email', sortable: false},
+    {prop: 'pay_for_transport', name: 'Zapłata za transport'},
+    {prop: 'additional_data', name: 'Informacje dodatkowe'},
+    {prop: 'ship_documents_to_agency', name: 'Wysyłka dokumentów agencja'},
+    {prop: 'broker.name', name: 'Broker'},
     {prop: 'over_fracht', name: 'Over fracht'},
     {prop: 'over_odprawa', name: 'Over odprawa'},
     {prop: 'over_transport_to_pl', name: 'Over transport to PL'},
     {prop: 'over_hst', name: 'Over HST'},
+    {prop: 'employeeFullname', name: 'Kupił'}
   ];
 
   selected = [];
@@ -41,17 +49,26 @@ export class OfferComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.offerService.getOfferList().subscribe(response => {
-      this.offers = response.map(offer => ({
-        ...offer,
-        vehicle: `${offer.car.make.name} ${offer.car.model}`
-      }));
+      this.subscribeOffers(response);
       this.isLoading = false;
     });
   }
 
+  subscribeOffers(response): void {
+    this.pagination = response['pagination'];
+    this.offers = response['results'].map(offer => ({
+      ...offer,
+      vehicle: `${offer.car.make.name} ${offer.car.model}`,
+      client: `${offer.customer.first_name} ${offer.customer.last_name}`,
+      employeeFullname: `${offer.employee.first_name} ${offer.employee.last_name}`
+    }));
+  }
+
   ngAfterViewInit(): void {
     this.ngxDatatable.columnMode = ColumnMode.force;
+
   }
+
 
   singleSelectCheck = (row: any) => {
     return this.selected.indexOf(row) === -1;
@@ -84,10 +101,7 @@ export class OfferComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         return data;
       })).subscribe(response => {
-      this.offers = response.map(offer => ({
-        ...offer,
-        vehicle: `${offer.car.make.name} ${offer.car.model}`
-      }));
+        this.subscribeOffers(response);
     });
   }
 
@@ -116,10 +130,7 @@ export class OfferComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         return data;
       })).subscribe(response => {
-      this.offers = response.map(offer => ({
-        ...offer,
-        vehicle: `${offer.car.make.name} ${offer.car.model}`
-      }));
+        this.subscribeOffers(response);
 
       this.selected = [];
 

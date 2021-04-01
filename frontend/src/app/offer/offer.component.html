@@ -28,9 +28,11 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+
+
 <ngx-datatable
   class="material"
-  [columnMode]="'flex'"
+  [columnMode]="'force'"
   [rows]="offers"
   [columns]="columns"
   headerHeight="50"
@@ -41,5 +43,4 @@
   [selectionType]="SelectionType.single"
   (select)="onSelect($event)"
 >
-
 </ngx-datatable>

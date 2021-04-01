@@ -15,6 +15,7 @@ drf-writable-nested = "*"
 psycopg2 = "*"
 django-cors-headers = "*"
 gunicorn = "*"
+django-filter = "*"
 
 [dev-packages]
 

@@ -1,3 +1,15 @@
+export interface PaginationOffer {
+  pagination: Pagination;
+  results: Offer[];
+}
+
+export interface Pagination {
+  page: number;
+  size: number;
+  count: number;
+  lastPage: number;
+}
+
 export interface Offer {
   id?: number;
   car: Car;
@@ -24,6 +36,7 @@ export interface EditOffer {
   over_transport_to_pl: number;
   over_hst: number;
 }
+
 
 export interface Car {
   id?: number;

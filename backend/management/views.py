@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import generics, viewsets
+
+from conf.core import MyPagination
 from management.models import Customer, Offer, Employee, Broker, Car, Make
 from management.serializers import OfferSerializer, CustomerSerializer, EmployeeSerializer, BrokerSerializer, \
     CarSerializer, MakeSerializer
@@ -33,6 +35,7 @@ class CarViewSet(viewsets.ModelViewSet):
 
 
 class OfferViewSet(viewsets.ModelViewSet):
+    pagination_class = MyPagination
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
 
