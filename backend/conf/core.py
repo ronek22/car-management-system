@@ -1,7 +1,10 @@
-from rest_framework.pagination import PageNumberPagination
+from collections import OrderedDict
+
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 from rest_framework.response import Response
 from math import ceil
 from rest_framework.filters import OrderingFilter
+from rest_framework.utils.urls import replace_query_param, remove_query_param
 
 DEFAULT_PAGE = 1
 DEFAULT_PAGE_SIZE = 10
@@ -18,10 +21,47 @@ class MyPagination(PageNumberPagination):
                 'page': int(self.request.GET.get('page', DEFAULT_PAGE)),
                 'size': int(self.request.GET.get('size', self.page_size)),
                 'count': self.page.paginator.count,
-                'lastPage': ceil(self.page.paginator.count / int(self.request.GET.get('size', self.page_size))),
             },
             'results': data
         })
+
+
+class LimitPagination(LimitOffsetPagination):
+
+
+    def get_paginated_response(self, data):
+        return Response({
+            'pagination': {
+                'count': self.count,
+                'next': self.get_next_link(),
+                'previous': self.get_previous_link(),
+                'limit': self.limit
+            },
+            'results': data
+        })
+
+    def get_next_link(self):
+        if self.offset + self.limit >= self.count:
+            return None
+
+        url = self.request.get_full_path()
+        url = replace_query_param(url, self.limit_query_param, self.limit)
+
+        offset = self.offset + self.limit
+        return replace_query_param(url, self.offset_query_param, offset)
+
+    def get_previous_link(self):
+        if self.offset <= 0:
+            return None
+
+        url = self.request.get_full_path()
+        url = replace_query_param(url, self.limit_query_param, self.limit)
+
+        if self.offset - self.limit <= 0:
+            return remove_query_param(url, self.offset_query_param)
+
+        offset = self.offset - self.limit
+        return replace_query_param(url, self.offset_query_param, offset)
 
 
 class CustomOrdering(OrderingFilter):

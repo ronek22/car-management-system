@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Car} from '../models/models';
+import {Car, Vehicle} from '../models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,11 @@ export class CarService {
     return this.http.get<Car[]>(`${this.baseUrl}/`);
   }
 
+  uniqueCars(): Observable<Vehicle[]> {
+    return this.http.get<Vehicle[]>(`${this.baseUrl}/all_models/`)
+  }
+
+
   addCar(car: Car): Observable<Car> {
     return this.http.post<Car>(`${this.baseUrl}/`, car);
   }
@@ -24,6 +29,7 @@ export class CarService {
   editCar(car: Car): Observable<Car> {
     return this.http.put<Car>(`${this.baseUrl}/${car.id}/`, car);
   }
+
 
   deleteCar(id: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${id}`);

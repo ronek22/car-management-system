@@ -2,7 +2,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Broker, Car, Customer, Employee, Offer} from "../../models/models";
+import {Broker, Car, Customer, Employee, Offer, Vehicle} from "../../models/models";
 import {formatDate} from "@angular/common";
 import {CarService} from "../../services/car.service";
 import {CustomerService} from "../../services/customer.service";
@@ -16,7 +16,7 @@ import {BrokerService} from "../../services/broker.service";
   styleUrls: ['./offer-dialog.component.scss']
 })
 export class OfferDialogComponent implements OnInit {
-  availableCars$: Observable<Car[]>;
+  availableCars$: Observable<Vehicle[]>;
   availableCustomers$: Observable<Customer[]>;
   availableEmployees$: Observable<Employee[]>;
   availableBrokers$: Observable<Broker[]>;
@@ -40,7 +40,7 @@ export class OfferDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.availableCars$ = this.carService.getCarList();
+    this.availableCars$ = this.carService.uniqueCars();
     this.availableCustomers$ = this.customerService.getCustomersList();
     this.availableEmployees$ = this.employeeService.getEmployeesList();
     this.availableBrokers$ = this.brokerService.getBrokersList();
@@ -84,8 +84,8 @@ export class OfferDialogComponent implements OnInit {
     });
   }
 
-  carSelected(e: Car): void {
-    this.carForm.controls['make'].setValue(e.make.name);
+  carSelected(e: Vehicle): void {
+    this.carForm.controls['make'].setValue(e.brand);
     this.carForm.controls['model'].setValue(e.model);
   }
 

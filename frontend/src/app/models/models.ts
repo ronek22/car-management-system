@@ -3,11 +3,19 @@ export interface PaginationOffer {
   results: Offer[];
 }
 
+// export interface Pagination {
+//   count: number;
+//   next: string;
+//   previous: string;
+//   limit: number;
+// }
+
+
 export interface Pagination {
   page: number;
   size: number;
   count: number;
-  lastPage: number;
+  // lastPage: number;
 }
 
 export interface Offer {
@@ -45,6 +53,11 @@ export interface Car {
   };
   model: string;
   year: string;
+}
+
+export interface Vehicle {
+  brand: string;
+  model: string;
 }
 
 export interface Customer {

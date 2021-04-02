@@ -14,8 +14,9 @@ export class OfferService {
   constructor(private http: HttpClient) {
   }
 
-  getOfferList(): Observable<Offer[]> {
-    return this.http.get<Offer[]>(`${this.baseUrl}/`);
+  getOfferList(params?: {}): Observable<any> {
+    if (params) return this.http.get<any>(`${this.baseUrl}/`, params)
+    return this.http.get<any>(`${this.baseUrl}/`);
   }
 
   getOfferDetail(id: number): Observable<Offer> {

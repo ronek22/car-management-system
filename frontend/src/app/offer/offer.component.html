@@ -38,9 +38,16 @@
   headerHeight="50"
   footerHeight="50"
   rowHeight="50"
+  [externalPaging]="true"
+  [count]="pagination.count"
+  [limit]="pagination.size"
+  [offset]="pagination.page"
+
   [selected]="selected"
   [selectCheck]="singleSelectCheck"
   [selectionType]="SelectionType.single"
   (select)="onSelect($event)"
+
+  (page)="setPage($event)"
 >
 </ngx-datatable>

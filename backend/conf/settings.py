@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     # 'DEFAULT_PAGINATION_CLASS': 'conf.core.MyPagination',
-    # 'PAGE_SIZE': 50,
+    # 'PAGE_SIZE': 5,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 
 }

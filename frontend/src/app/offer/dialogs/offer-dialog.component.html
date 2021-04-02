@@ -14,7 +14,7 @@
               <mat-label>Wybierz pojazd</mat-label>
               <mat-select (selectionChange)="carSelected($event.value)">
                 <mat-option *ngFor="let car of availableCars$|async"
-                            [value]="car">{{car.make.name}} {{car.model}}</mat-option>
+                            [value]="car">{{car.brand}} {{car.model}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

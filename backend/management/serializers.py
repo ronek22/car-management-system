@@ -14,6 +14,17 @@ class MakeSerializer(serializers.ModelSerializer):
             }
         }
 
+    def create(self, validated_data):
+        name = validated_data.pop('name', None)
+        make = Make.objects.create(name=name.upper())
+        return make
+
+    def update(self, instance, validated_data):
+        name = validated_data.pop('name', None)
+        instance.name = name.upper()
+        instance.save()
+        return instance
+
 
 class CarSerializer(serializers.ModelSerializer):
     make = MakeSerializer(many=False)
@@ -37,7 +48,6 @@ class CarSerializer(serializers.ModelSerializer):
         instance.year = validated_data['year']
         instance.save()
         return instance
-
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -95,7 +105,7 @@ class OfferSerializer(serializers.ModelSerializer):
         car_data = validated_data.pop('car', None)
         make_data = car_data.pop('make')
         make, _ = Make.objects.get_or_create(**make_data)
-        car = Car.objects.create(**car_data, make=make)
+        car, _ = Car.objects.get_or_create(**car_data, make=make)
         customer_data = validated_data.pop('customer', None)
         customer, _ = Customer.objects.get_or_create(**customer_data)
         broker_data = validated_data.pop('broker', None)

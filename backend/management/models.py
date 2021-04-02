@@ -19,6 +19,7 @@ class Car(models.Model):
     class Meta:
         db_table = "cars"
         unique_together = ('make', 'model', 'year')
+        ordering = ['make__name', 'model', 'year']
 
     def __str__(self):
         return f"{self.year} {self.make} {self.model}"

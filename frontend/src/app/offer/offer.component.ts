@@ -56,6 +56,7 @@ export class OfferComponent implements OnInit, AfterViewInit {
 
   subscribeOffers(response): void {
     this.pagination = response['pagination'];
+    this.pagination.page = this.pagination.page-1;
     this.offers = response['results'].map(offer => ({
       ...offer,
       vehicle: `${offer.car.make.name} ${offer.car.model}`,
@@ -82,6 +83,20 @@ export class OfferComponent implements OnInit, AfterViewInit {
     console.log('Activate event', event);
   }
 
+  setPage(pageInfo): void {
+    console.log(pageInfo.offset);
+    const query = {
+      params: {
+        page: pageInfo.offset+1
+      }
+    }
+    this.offerService.getOfferList(query).subscribe(response => {
+      this.subscribeOffers(response);
+      this.isLoading = false;
+    });
+
+  }
+
   addOffer(): void {
     const dialogRef = this.dialog.open(OfferDialogComponent, {
       data: {},
@@ -101,7 +116,7 @@ export class OfferComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         return data;
       })).subscribe(response => {
-        this.subscribeOffers(response);
+      this.subscribeOffers(response);
     });
   }
 
@@ -130,7 +145,7 @@ export class OfferComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         return data;
       })).subscribe(response => {
-        this.subscribeOffers(response);
+      this.subscribeOffers(response);
 
       this.selected = [];
 
