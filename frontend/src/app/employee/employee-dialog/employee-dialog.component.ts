@@ -1,22 +1,22 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {Employee} from "../../models/models";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import { Component, Inject, OnInit } from '@angular/core';
+import { Employee } from '../../models/models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-employee-dialog',
   templateUrl: './employee-dialog.component.html',
-  styleUrls: ['./employee-dialog.component.scss']
+  styleUrls: ['./employee-dialog.component.scss'],
 })
 export class EmployeeDialogComponent implements OnInit {
-
   employee: Employee;
   employeeForm: FormGroup;
 
-  constructor(private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data: Employee,
-              public dialogRef: MatDialogRef<EmployeeDialogComponent>) {
-  }
+  constructor(
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: Employee,
+    public dialogRef: MatDialogRef<EmployeeDialogComponent>
+  ) {}
 
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
@@ -45,10 +45,9 @@ export class EmployeeDialogComponent implements OnInit {
     if (this.employee) {
       this.data = {
         ...this.data,
-        id: this.employee.id
+        id: this.employee.id,
       };
     }
     this.dialogRef.close(this.data);
   }
-
 }

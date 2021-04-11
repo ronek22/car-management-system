@@ -1,21 +1,32 @@
 <div class="container">
-
   <h2 mat-dialog-title>Edytuj pracownika</h2>
   <mat-dialog-content>
     <form [formGroup]="offerForm">
-       <div fxLayout="column" class="form__input">
-            <mat-form-field appearance="fill">
-              <mat-label>Wybierz pracownika</mat-label>
-              <mat-select formControlName="employee" [compareWith]="compareEmployee">
-                <mat-option *ngFor="let employee of availableEmployees$|async"
-                            [value]="employee">{{employee.first_name}} {{employee.last_name}}</mat-option>
-              </mat-select>
-            </mat-form-field>
+      <div fxLayout="column" class="form__input">
+        <mat-form-field appearance="fill">
+          <mat-label>Wybierz pracownika</mat-label>
+          <mat-select
+            formControlName="employee"
+            [compareWith]="compareEmployee"
+          >
+            <mat-option
+              *ngFor="let employee of availableEmployees$ | async"
+              [value]="employee"
+              >{{ employee.first_name }} {{ employee.last_name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
 
         <div fxLayout="row" fxLayoutAlign="space-between end">
           <button mat-button mat-dialog-close>Anuluj</button>
-          <button mat-raised-button color="primary" (click)="getData()"
-                  [mat-dialog-close]="offer">Edytuj</button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="getData()"
+            [mat-dialog-close]="offer"
+          >
+            Edytuj
+          </button>
         </div>
       </div>
     </form>

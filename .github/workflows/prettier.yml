@@ -11,25 +11,25 @@ defaults:
     working-directory: ./frontend
 
 jobs:
-  run-linters:
-    name: Run linters
+  prettier:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        # Make sure the actual branch is checked out when running on pull requests
+        ref: ${{ github.head_ref }}
+        # This is important to fetch the changes to the previous commit
+        fetch-depth: 0
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
+    - name: Prettify code
+      uses: creyD/prettier_action@v3.1
+      with:
+        # This part is also where you can pass other options, for example:
+        prettier_options: --write **/*.{js,ts,html,scss,css}
+        same_commit: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install Node.js dependencies
-        run: npm ci prettier
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v1
-        with:
-          auto_fix: true
-          prettier: true
         

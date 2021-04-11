@@ -1,5 +1,4 @@
 <div class="container">
-
   <h2 mat-dialog-title>Edytuj oferte</h2>
   <mat-dialog-content>
     <form [formGroup]="offerForm">
@@ -7,15 +6,29 @@
         <div fxLayout="row" [fxLayoutGap]="'10px'">
           <mat-form-field appearance="fill">
             <mat-label>Opłata za transport</mat-label>
-            <input matInput formControlName='payForTransport' [matDatepicker]="payTrans">
-            <mat-datepicker-toggle matSuffix [for]="payTrans"></mat-datepicker-toggle>
+            <input
+              matInput
+              formControlName="payForTransport"
+              [matDatepicker]="payTrans"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="payTrans"
+            ></mat-datepicker-toggle>
             <mat-datepicker #payTrans></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Wysyłka dokumentów</mat-label>
-            <input matInput formControlName='shipDocumentsToAgency' [matDatepicker]="ship">
-            <mat-datepicker-toggle matSuffix [for]="ship"></mat-datepicker-toggle>
+            <input
+              matInput
+              formControlName="shipDocumentsToAgency"
+              [matDatepicker]="ship"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="ship"
+            ></mat-datepicker-toggle>
             <mat-datepicker #ship></mat-datepicker>
           </mat-form-field>
         </div>
@@ -27,28 +40,34 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Over Fracht</mat-label>
-          <input matInput type="number" formControlName="overFracht">
+          <input matInput type="number" formControlName="overFracht" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Over Odprawa</mat-label>
-          <input matInput type="number" formControlName="overOdprawa">
+          <input matInput type="number" formControlName="overOdprawa" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Over Transport To PL</mat-label>
-          <input matInput type="number" formControlName="overTransportToPl">
+          <input matInput type="number" formControlName="overTransportToPl" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Over HST</mat-label>
-          <input matInput type="number" formControlName="overHST">
+          <input matInput type="number" formControlName="overHST" />
         </mat-form-field>
 
         <div fxLayout="row" fxLayoutAlign="space-between end">
           <button mat-button mat-dialog-close>Anuluj</button>
-          <button mat-raised-button color="primary" (click)="getData()"
-                  [mat-dialog-close]="offer">Edytuj</button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="getData()"
+            [mat-dialog-close]="offer"
+          >
+            Edytuj
+          </button>
         </div>
       </div>
     </form>

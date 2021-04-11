@@ -1,21 +1,30 @@
 <div *ngIf="offer">
-
   <mat-toolbar>
     <mat-toolbar-row>
-      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" fxFlex>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="10px"
+        fxFlex
+      >
         <button mat-raised-button color="accent" [routerLink]="['/offers']">
           <mat-icon>chevron_left</mat-icon>
           Wróć
         </button>
-        <h4>{{offer.car.year}} {{offer.car.make.name}} {{offer.car.model}}</h4>
+        <h4>
+          {{ offer.car.year }} {{ offer.car.make.name }} {{ offer.car.model }}
+        </h4>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
 
   <div class="container" fxLayout="row" fxLayoutGap="20px">
     <div fxFlex fxLayout="column" fxLayoutGap="20px">
-
-      <mat-card fxLayout="column" fxLayoutAlign="space-between" class="box mat-elevation-z1 vehicle">
+      <mat-card
+        fxLayout="column"
+        fxLayoutAlign="space-between"
+        class="box mat-elevation-z1 vehicle"
+      >
         <mat-card-header fxLayout="row" fxLayoutAlign="start center">
           <div mat-card-avatar>
             <mat-icon>drive_eta</mat-icon>
@@ -24,68 +33,130 @@
           <mat-card-subtitle>Dane dot. importowanego pojazdu</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>Marka<span>{{offer.car.make.name}}</span></p>
-          <p>Model<span>{{offer.car.model}}</span></p>
-          <p>Rocznik<span>{{offer.car.year}}</span></p>
-          <p>VIN<span>{{offer.vin}}</span></p>
+          <p>
+            Marka<span>{{ offer.car.make.name }}</span>
+          </p>
+          <p>
+            Model<span>{{ offer.car.model }}</span>
+          </p>
+          <p>
+            Rocznik<span>{{ offer.car.year }}</span>
+          </p>
+          <p>
+            VIN<span>{{ offer.vin }}</span>
+          </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary" (click)="editOffer('vehicle')">EDYTUJ</button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="editOffer('vehicle')"
+          >
+            EDYTUJ
+          </button>
         </mat-card-actions>
       </mat-card>
 
-      <mat-card fxLayout="column" fxLayoutAlign="space-between" class="box mat-elevation-z1 vehicle">
+      <mat-card
+        fxLayout="column"
+        fxLayoutAlign="space-between"
+        class="box mat-elevation-z1 vehicle"
+      >
         <mat-card-header fxLayout="row" fxLayoutAlign="start center">
           <div mat-card-avatar>
             <mat-icon>local_offer</mat-icon>
           </div>
           <mat-card-title>Oferta</mat-card-title>
-          <mat-card-subtitle>ID: {{offer.id}}</mat-card-subtitle>
+          <mat-card-subtitle>ID: {{ offer.id }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>Data płatności za transport<span>{{offer.pay_for_transport}}</span></p>
-          <p>Data przesłania dokumentów<span>{{offer.ship_documents_to_agency}}</span></p>
-          <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" class="finance">
-            <p fxFlex>Over Fracht<span>{{offer.over_fracht}}</span></p>
-            <p fxFlex>Over Odprawa<span>{{offer.over_odprawa}}</span></p>
-            <p fxFlex>Over Transport to PL<span>{{offer.over_transport_to_pl}}</span></p>
-            <p fxFlex>Over HST<span>{{offer.over_hst}}</span></p>
+          <p>
+            Data płatności za transport<span>{{
+              offer.pay_for_transport
+            }}</span>
+          </p>
+          <p>
+            Data przesłania dokumentów<span>{{
+              offer.ship_documents_to_agency
+            }}</span>
+          </p>
+          <div
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutAlign="space-between center"
+            class="finance"
+          >
+            <p fxFlex>
+              Over Fracht<span>{{ offer.over_fracht }}</span>
+            </p>
+            <p fxFlex>
+              Over Odprawa<span>{{ offer.over_odprawa }}</span>
+            </p>
+            <p fxFlex>
+              Over Transport to PL<span>{{ offer.over_transport_to_pl }}</span>
+            </p>
+            <p fxFlex>
+              Over HST<span>{{ offer.over_hst }}</span>
+            </p>
           </div>
 
           <div *ngIf="offer.additional_data">
             <p class="heading">Dodatkowe informacje</p>
-            <p>{{offer.additional_data}}</p>
+            <p>{{ offer.additional_data }}</p>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary" (click)="editOffer('offer')">EDYTUJ</button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="editOffer('offer')"
+          >
+            EDYTUJ
+          </button>
         </mat-card-actions>
       </mat-card>
-
-
     </div>
 
     <div fxFlex fxLayout="column" fxLayoutGap="20px">
-
-      <mat-card fxLayout="column" fxLayoutAlign="space-between" class="box mat-elevation-z1 customer">
+      <mat-card
+        fxLayout="column"
+        fxLayoutAlign="space-between"
+        class="box mat-elevation-z1 customer"
+      >
         <mat-card-header fxLayout="row" fxLayoutAlign="start center">
           <div mat-card-avatar>
             <mat-icon>people</mat-icon>
           </div>
-          <mat-card-title>{{offer.customer.first_name}} {{offer.customer.last_name}}</mat-card-title>
+          <mat-card-title
+            >{{ offer.customer.first_name }}
+            {{ offer.customer.last_name }}</mat-card-title
+          >
           <mat-card-subtitle>Klient</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>Numer telefonu<span>{{offer.customer.phone}}</span></p>
-          <p>Adres email<span>{{offer.customer.email}}</span></p>
+          <p>
+            Numer telefonu<span>{{ offer.customer.phone }}</span>
+          </p>
+          <p>
+            Adres email<span>{{ offer.customer.email }}</span>
+          </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary" (click)="editOffer('customer')">EDYTUJ</button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="editOffer('customer')"
+          >
+            EDYTUJ
+          </button>
         </mat-card-actions>
       </mat-card>
 
-
-      <mat-card fxLayout="column" fxLayoutAlign="space-between" class="box mat-elevation-z1 customer">
+      <mat-card
+        fxLayout="column"
+        fxLayoutAlign="space-between"
+        class="box mat-elevation-z1 customer"
+      >
         <mat-card-header fxLayout="row" fxLayoutAlign="start center">
           <div mat-card-avatar>
             <mat-icon>engineering</mat-icon>
@@ -94,15 +165,29 @@
           <mat-card-subtitle>Dane dot. pracownika</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>Imię<span>{{offer.employee.first_name}}</span></p>
-          <p>Nazwisko<span>{{offer.employee.last_name}}</span></p>
+          <p>
+            Imię<span>{{ offer.employee.first_name }}</span>
+          </p>
+          <p>
+            Nazwisko<span>{{ offer.employee.last_name }}</span>
+          </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary" (click)="editOffer('employee')">EDYTUJ</button>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="editOffer('employee')"
+          >
+            EDYTUJ
+          </button>
         </mat-card-actions>
       </mat-card>
 
-      <mat-card fxLayout="column" fxLayoutAlign="space-between" class="box mat-elevation-z1 customer">
+      <mat-card
+        fxLayout="column"
+        fxLayoutAlign="space-between"
+        class="box mat-elevation-z1 customer"
+      >
         <mat-card-header fxLayout="row" fxLayoutAlign="start center">
           <div mat-card-avatar>
             <mat-icon>support_agent</mat-icon>
@@ -111,16 +196,20 @@
           <mat-card-subtitle>Dane dot. brokera</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>Nazwa<span>{{offer.broker.name}}</span></p>
+          <p>
+            Nazwa<span>{{ offer.broker.name }}</span>
+          </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button color="primary" (click)="editOffer('broker')">EDYTUJ</button>
-
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="editOffer('broker')"
+          >
+            EDYTUJ
+          </button>
         </mat-card-actions>
       </mat-card>
-
     </div>
-
   </div>
-
 </div>

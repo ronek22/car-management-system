@@ -1,29 +1,37 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="10px"
+      fxFlex
+    >
       <button mat-raised-button color="accent" (click)="addCustomer()">
         <mat-icon>add</mat-icon>
         Dodaj
       </button>
 
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-
-
-        <button mat-raised-button color="primary"
-                [disabled]="selected.length === 0"
-                (click)="editCustomer()"
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="selected.length === 0"
+          (click)="editCustomer()"
         >
           <mat-icon>edit</mat-icon>
           Edytuj
         </button>
 
-        <button mat-raised-button color="warn" [disabled]="selected.length === 0"
-                (click)="openConfirmationDialog()">
+        <button
+          mat-raised-button
+          color="warn"
+          [disabled]="selected.length === 0"
+          (click)="openConfirmationDialog()"
+        >
           <mat-icon>delete</mat-icon>
           Usuń
         </button>
       </div>
-
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
