@@ -39,5 +39,5 @@ jobs:
           black: true
           black_args: "./backend"
           prettier: true
-          prettier_args: "--write .frontend/**/*.{js,ts,html,scss,css}"
+          prettier_args: "--write **/*.{js,ts,html,scss,css}"
         
