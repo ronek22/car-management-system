@@ -36,13 +36,13 @@ class CarSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         make_data = validated_data.pop('make')
-        make, created = Make.objects.get_or_create(**make_data)
+        make, created = Make.objects.get_or_create(name=make_data.get('name').upper())
         car = Car.objects.create(**validated_data, make=make)
         return car
 
     def update(self, instance, validated_data):
         make_data = validated_data.pop('make')
-        make, created = Make.objects.get_or_create(**make_data)
+        make, created = Make.objects.get_or_create(name=make_data.get('name').upper())
         instance.make = make
         instance.model = validated_data['model']
         instance.year = validated_data['year']
@@ -104,7 +104,7 @@ class OfferSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         car_data = validated_data.pop('car', None)
         make_data = car_data.pop('make')
-        make, _ = Make.objects.get_or_create(**make_data)
+        make, _ = Make.objects.get_or_create(name=make_data.get('name').upper())
         car, _ = Car.objects.get_or_create(**car_data, make=make)
         customer_data = validated_data.pop('customer', None)
         customer, _ = Customer.objects.get_or_create(**customer_data)
