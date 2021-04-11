@@ -8,81 +8,156 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Broker',
+            name="Broker",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='Car',
+            name="Car",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('model', models.CharField(max_length=100)),
-                ('year', models.CharField(max_length=4)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("model", models.CharField(max_length=100)),
+                ("year", models.CharField(max_length=4)),
             ],
             options={
-                'db_table': 'cars',
+                "db_table": "cars",
             },
         ),
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=20)),
-                ('last_name', models.CharField(max_length=40)),
-                ('phone', models.CharField(max_length=12)),
-                ('email', models.EmailField(max_length=254)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=20)),
+                ("last_name", models.CharField(max_length=40)),
+                ("phone", models.CharField(max_length=12)),
+                ("email", models.EmailField(max_length=254)),
             ],
         ),
         migrations.CreateModel(
-            name='Employee',
+            name="Employee",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=20)),
-                ('last_name', models.CharField(max_length=40)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=20)),
+                ("last_name", models.CharField(max_length=40)),
             ],
         ),
         migrations.CreateModel(
-            name='Make',
+            name="Make",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=60, unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=60, unique=True)),
             ],
             options={
-                'db_table': 'makes',
+                "db_table": "makes",
             },
         ),
         migrations.CreateModel(
-            name='Offer',
+            name="Offer",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('vin', models.CharField(max_length=17)),
-                ('pay_for_transport', models.DateField()),
-                ('ship_documents_to_agency', models.DateField()),
-                ('additional_data', models.CharField(max_length=200, null=True)),
-                ('over_fracht', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('over_odprawa', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('over_transport_to_pl', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('over_hst', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('broker', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='management.broker')),
-                ('car', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='management.car')),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='management.customer')),
-                ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='management.employee')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("vin", models.CharField(max_length=17)),
+                ("pay_for_transport", models.DateField()),
+                ("ship_documents_to_agency", models.DateField()),
+                ("additional_data", models.CharField(max_length=200, null=True)),
+                ("over_fracht", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("over_odprawa", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "over_transport_to_pl",
+                    models.DecimalField(decimal_places=2, max_digits=10),
+                ),
+                ("over_hst", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "broker",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="management.broker",
+                    ),
+                ),
+                (
+                    "car",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="management.car"
+                    ),
+                ),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="management.customer",
+                    ),
+                ),
+                (
+                    "employee",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="management.employee",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='car',
-            name='make',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='management.make'),
+            model_name="car",
+            name="make",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="management.make"
+            ),
         ),
         migrations.AlterUniqueTogether(
-            name='car',
-            unique_together={('make', 'model', 'year')},
+            name="car",
+            unique_together={("make", "model", "year")},
         ),
     ]

@@ -25,13 +25,14 @@ router = DefaultRouter()
 router.registry.extend(management_router.registry)
 
 
-
-schema_view = get_schema_view(title='Car Management API',
-                              description='An API to create offers, client, cars, employees')
+schema_view = get_schema_view(
+    title="Car Management API",
+    description="An API to create offers, client, cars, employees",
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('schema/', schema_view),
-    path('docs/', include_docs_urls(title='Car Management API'))
+    path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
+    path("schema/", schema_view),
+    path("docs/", include_docs_urls(title="Car Management API")),
 ]
