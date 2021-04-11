@@ -30,5 +30,6 @@ jobs:
       - name: Run linters
         uses: wearerequired/lint-action@v1
         with:
+          auto_fix: true
           black: true
         
