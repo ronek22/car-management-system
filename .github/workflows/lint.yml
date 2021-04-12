@@ -30,7 +30,7 @@ jobs:
           node-version: 12
           
       - name: Install Prettier
-        run: npm install prettier
+        run: npm install eslint
         working-directory: frontend/
 
       - name: Run linters
@@ -39,7 +39,8 @@ jobs:
           auto_fix: true
           black: true
           black_args: "./backend"
-          prettier: true
-          prettier_dir: frontend/
-          prettier_args: "--write **/*.{js,ts,html,scss,css}"
+          eslint: true
+          eslint_extensions: js,ts
+          eslint_dir: frontend/
+          eslint_args: "--no-eslintrc"
         
