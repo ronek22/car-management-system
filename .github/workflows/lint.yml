@@ -24,14 +24,6 @@ jobs:
       - name: Install Python dependencies
         run: pip install black
         
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          
-      - name: Install Prettier
-        run: npm install eslint
-        working-directory: frontend/
 
       - name: Run linters
         uses: wearerequired/lint-action@v1
@@ -39,8 +31,5 @@ jobs:
           auto_fix: true
           black: true
           black_args: "./backend"
-          eslint: true
-          eslint_extensions: js,ts
-          eslint_dir: frontend/
-          eslint_args: "--no-eslintrc"
+
         
