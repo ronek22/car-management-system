@@ -22,23 +22,21 @@ export class OfferComponent implements OnInit, AfterViewInit {
   pagination: Pagination;
   columns: any[] = [
     // {name: 'ID', prop: 'id', sortable: false},
-    {prop: 'car.year', name: 'Rocznik'},
-    {prop: 'car.make.name', name: 'Marka'},
-    {prop: 'car.model', name: 'Model'},
+    {prop: 'car.year', name: 'Rocznik', sortable: true},
+    {prop: 'car.make.name', name: 'Marka', sortable: true},
+    {prop: 'car.model', name: 'Model', sortable: true},
+    {prop: 'vin', name: 'VIN', sortable: true},
+    {prop: 'client', name: 'Klient', sortable: true},
+    {prop: 'customer.email', name: 'Email', sortable: true},
+    {prop: 'pay_for_transport', name: 'Zapłata za transport', sortable: false},
+    {prop: 'ship_documents_to_agency', name: 'Wysyłka dokumentów agencja', sortable: false},
+    {prop: 'broker.name', name: 'Broker', sortable: false},
+    {prop: 'over_fracht', name: 'Over fracht', sortable: false},
+    {prop: 'over_odprawa', name: 'Over odprawa', sortable: false},
+    {prop: 'over_transport_to_pl', name: 'Over transport to PL', sortable: false},
+    {prop: 'employeeFullname', name: 'Kupił', sortable: false},
+    {prop: 'additional_data', name: 'Informacje dodatkowe', sortable: false},
 
-    // {prop: 'vehicle', name: 'Pojazd'},
-    {prop: 'vin', name: 'VIN', sortable: false},
-    {prop: 'customer.phone', name: 'Telefon', sortable: false},
-    {prop: 'customer.email', name: 'Email', sortable: false},
-    {prop: 'pay_for_transport', name: 'Zapłata za transport'},
-    {prop: 'additional_data', name: 'Informacje dodatkowe'},
-    {prop: 'ship_documents_to_agency', name: 'Wysyłka dokumentów agencja'},
-    {prop: 'broker.name', name: 'Broker'},
-    {prop: 'over_fracht', name: 'Over fracht'},
-    {prop: 'over_odprawa', name: 'Over odprawa'},
-    {prop: 'over_transport_to_pl', name: 'Over transport to PL'},
-    {prop: 'over_hst', name: 'Over HST'},
-    {prop: 'employeeFullname', name: 'Kupił'}
   ];
 
   selected = [];
