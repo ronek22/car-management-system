@@ -1,26 +1,25 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {OfferComponent} from './offer/offer.component';
-import {VehicleComponent} from './vehicle/vehicle.component';
-import {CustomerComponent} from './customer/customer.component';
-import {EmployeeComponent} from './employee/employee.component';
-import {BrokerComponent} from './broker/broker.component';
-import {OfferDetailComponent} from "./offer/offer-detail/offer-detail.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { OfferComponent } from './offer/offer.component';
+import { VehicleComponent } from './vehicle/vehicle.component';
+import { CustomerComponent } from './customer/customer.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { BrokerComponent } from './broker/broker.component';
+import { OfferDetailComponent } from './offer/offer-detail/offer-detail.component';
 
 const routes: Routes = [
-  {path: 'offers', component: OfferComponent},
-  {path: 'offer/:id', component: OfferDetailComponent},
-  {path: 'vehicles', component: VehicleComponent},
-  {path: 'clients', component: CustomerComponent},
-  {path: 'employees', component: EmployeeComponent},
-  {path: 'brokers', component: BrokerComponent},
+  { path: 'offers', component: OfferComponent },
+  { path: 'offer/:id', component: OfferDetailComponent },
+  { path: 'vehicles', component: VehicleComponent },
+  { path: 'clients', component: CustomerComponent },
+  { path: 'employees', component: EmployeeComponent },
+  { path: 'brokers', component: BrokerComponent },
 
-  {path: '**', redirectTo: 'offers'}
+  { path: '**', redirectTo: 'offers' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

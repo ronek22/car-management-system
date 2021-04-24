@@ -13,32 +13,34 @@ DEFAULT_PAGE_SIZE = 10
 class MyPagination(PageNumberPagination):
     page = DEFAULT_PAGE
     page_size = DEFAULT_PAGE_SIZE
-    page_size_query_param = 'size'
+    page_size_query_param = "size"
 
     def get_paginated_response(self, data):
-        return Response({
-            'pagination': {
-                'page': int(self.request.GET.get('page', DEFAULT_PAGE)),
-                'size': int(self.request.GET.get('size', self.page_size)),
-                'count': self.page.paginator.count,
-            },
-            'results': data
-        })
+        return Response(
+            {
+                "pagination": {
+                    "page": int(self.request.GET.get("page", DEFAULT_PAGE)),
+                    "size": int(self.request.GET.get("size", self.page_size)),
+                    "count": self.page.paginator.count,
+                },
+                "results": data,
+            }
+        )
 
 
 class LimitPagination(LimitOffsetPagination):
-
-
     def get_paginated_response(self, data):
-        return Response({
-            'pagination': {
-                'count': self.count,
-                'next': self.get_next_link(),
-                'previous': self.get_previous_link(),
-                'limit': self.limit
-            },
-            'results': data
-        })
+        return Response(
+            {
+                "pagination": {
+                    "count": self.count,
+                    "next": self.get_next_link(),
+                    "previous": self.get_previous_link(),
+                    "limit": self.limit,
+                },
+                "results": data,
+            }
+        )
 
     def get_next_link(self):
         if self.offset + self.limit >= self.count:
@@ -65,7 +67,6 @@ class LimitPagination(LimitOffsetPagination):
 
 
 class CustomOrdering(OrderingFilter):
-
     def get_ordering(self, request, queryset, view):
         """
         Ordering is set by a comma delimited ?ordering=... query parameter.
@@ -76,8 +77,9 @@ class CustomOrdering(OrderingFilter):
         params = request.query_params.get(self.ordering_param)
 
         if params:
-            fields = [param.strip() for param in params.split(',')]
-            if fields: return fields
+            fields = [param.strip() for param in params.split(",")]
+            if fields:
+                return fields
 
         # No ordering was included, or all the ordering fields were invalid
         return self.get_default_ordering(view)
@@ -86,9 +88,9 @@ class CustomOrdering(OrderingFilter):
 
         ordering = self.get_ordering(request, queryset, view)
         if ordering:
-            ordering.append('-id')
+            ordering.append("-id")
 
         if not ordering:
-            ordering = ['-id']
+            ordering = ["-id"]
 
         return queryset.order_by(*ordering)

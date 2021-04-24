@@ -1,34 +1,40 @@
-
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px" fxFlex>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="10px"
+      fxFlex
+    >
       <button mat-raised-button color="accent" (click)="addOffer()">
         <mat-icon>add</mat-icon>
         Dodaj
       </button>
 
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="selected.length === 0"
+          [routerLink]="['/offer', this.selected[0]?.id]"
+        >
+          <mat-icon>info</mat-icon>
+          Szczegóły
+        </button>
 
-
-      <button mat-raised-button color="primary"
-              [disabled]="selected.length === 0"
-              [routerLink]="['/offer', this.selected[0]?.id]"
-      >
-        <mat-icon>info</mat-icon>
-        Szczegóły
-      </button>
-
-      <button mat-raised-button color="warn" [disabled]="selected.length === 0"
-      (click)="openConfirmationDialog()">
-        <mat-icon>delete</mat-icon>
-        Usuń
-      </button>
-              </div>
-
+        <button
+          mat-raised-button
+          color="warn"
+          [disabled]="selected.length === 0"
+          (click)="openConfirmationDialog()"
+        >
+          <mat-icon>delete</mat-icon>
+          Usuń
+        </button>
+      </div>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
-
 
 <ngx-datatable
   class="material"
@@ -42,12 +48,10 @@
   [count]="pagination.count"
   [limit]="pagination.size"
   [offset]="pagination.page"
-
   [selected]="selected"
   [selectCheck]="singleSelectCheck"
   [selectionType]="SelectionType.single"
   (select)="onSelect($event)"
-
   (page)="setPage($event)"
 >
 </ngx-datatable>

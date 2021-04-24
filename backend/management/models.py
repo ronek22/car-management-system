@@ -18,8 +18,8 @@ class Car(models.Model):
 
     class Meta:
         db_table = "cars"
-        unique_together = ('make', 'model', 'year')
-        ordering = ['make__name', 'model', 'year']
+        unique_together = ("make", "model", "year")
+        ordering = ["make__name", "model", "year"]
 
     def __str__(self):
         return f"{self.year} {self.make} {self.model}"
@@ -55,11 +55,16 @@ class Offer(models.Model):
     ship_documents_to_agency = models.DateField(null=True, blank=True)
     additional_data = models.CharField(max_length=200, null=True, blank=True)
     broker = models.ForeignKey(Broker, on_delete=models.CASCADE)
-    over_fracht = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    over_odprawa = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    over_transport_to_pl = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    over_hst = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    over_fracht = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
+    over_odprawa = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
+    over_transport_to_pl = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
+    over_hst = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-
-
-

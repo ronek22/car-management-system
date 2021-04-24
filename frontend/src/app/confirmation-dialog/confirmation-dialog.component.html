@@ -1,7 +1,8 @@
-<h3 mat-dialog-title>{{confirmTitle}}</h3>
-<mat-dialog-content>{{confirmMessage}}</mat-dialog-content>
+<h3 mat-dialog-title>{{ confirmTitle }}</h3>
+<mat-dialog-content>{{ confirmMessage }}</mat-dialog-content>
 <div fxLayout="row" fxLayoutAlign="space-between" mat-dialog-actions>
   <button mat-button (click)="dialogRef.close(false)">Anuluj</button>
-  <button mat-raised-button color="warn" (click)="dialogRef.close(true)">{{confirmAction}}</button>
-
+  <button mat-raised-button color="warn" (click)="dialogRef.close(true)">
+    {{ confirmAction }}
+  </button>
 </div>

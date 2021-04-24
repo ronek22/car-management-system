@@ -5,7 +5,13 @@
       <form [formGroup]="carForm">
         <ng-template matStepLabel>Dane o importowanym pojezdzie</ng-template>
         <div fxLayout="column" class="form__input">
-          <mat-radio-group class="radio__field" fxFlex fxLayout="row" fxLayoutGap="10px" formControlName="mode">
+          <mat-radio-group
+            class="radio__field"
+            fxFlex
+            fxLayout="row"
+            fxLayoutGap="10px"
+            formControlName="mode"
+          >
             <mat-radio-button value="new">Nowy</mat-radio-button>
             <mat-radio-button value="old">Pobierz z bazy</mat-radio-button>
           </mat-radio-group>
@@ -13,26 +19,29 @@
             <mat-form-field appearance="fill">
               <mat-label>Wybierz pojazd</mat-label>
               <mat-select (selectionChange)="carSelected($event.value)">
-                <mat-option *ngFor="let car of availableCars$|async"
-                            [value]="car">{{car.brand}} {{car.model}}</mat-option>
+                <mat-option
+                  *ngFor="let car of availableCars$ | async"
+                  [value]="car"
+                  >{{ car.brand }} {{ car.model }}</mat-option
+                >
               </mat-select>
             </mat-form-field>
           </div>
           <mat-form-field *ngIf="this.carForm.value['mode'] === 'new'">
             <mat-label>Marka</mat-label>
-            <input matInput formControlName="make" required>
+            <input matInput formControlName="make" required />
           </mat-form-field>
           <mat-form-field *ngIf="this.carForm.value['mode'] === 'new'">
             <mat-label>Model</mat-label>
-            <input matInput formControlName="model" required>
+            <input matInput formControlName="model" required />
           </mat-form-field>
           <mat-form-field>
             <mat-label>Rocznik</mat-label>
-            <input matInput formControlName="year" required>
+            <input matInput formControlName="year" required />
           </mat-form-field>
           <mat-form-field>
             <mat-label>VIN</mat-label>
-            <input matInput formControlName="vin" required>
+            <input matInput formControlName="vin" required />
             <mat-error>Nieprawidłowy numer VIN!</mat-error>
           </mat-form-field>
           <div fxLayout="row" fxLayoutAlign="end end">
@@ -46,7 +55,13 @@
       <form [formGroup]="customerForm">
         <ng-template matStepLabel>Dane o kliencie</ng-template>
         <div fxLayout="column" class="form__input">
-          <mat-radio-group class="radio__field" fxFlex fxLayout="row" fxLayoutGap="10px" formControlName="mode">
+          <mat-radio-group
+            class="radio__field"
+            fxFlex
+            fxLayout="row"
+            fxLayoutGap="10px"
+            formControlName="mode"
+          >
             <mat-radio-button value="new">Nowy</mat-radio-button>
             <mat-radio-button value="old">Pobierz z bazy</mat-radio-button>
           </mat-radio-group>
@@ -54,8 +69,12 @@
             <mat-form-field appearance="fill">
               <mat-label>Wybierz klienta</mat-label>
               <mat-select (selectionChange)="customerSelected($event.value)">
-                <mat-option *ngFor="let customer of availableCustomers$|async"
-                            [value]="customer">{{customer.first_name}} {{customer.last_name}}</mat-option>
+                <mat-option
+                  *ngFor="let customer of availableCustomers$ | async"
+                  [value]="customer"
+                  >{{ customer.first_name }}
+                  {{ customer.last_name }}</mat-option
+                >
               </mat-select>
             </mat-form-field>
           </div>
@@ -63,23 +82,23 @@
             <div fxLayout="row" [fxLayoutGap]="rowGap">
               <mat-form-field fxFlex>
                 <mat-label>Imię</mat-label>
-                <input matInput formControlName="firstName" required>
+                <input matInput formControlName="firstName" required />
               </mat-form-field>
 
               <mat-form-field fxFlex>
                 <mat-label>Nazwisko</mat-label>
-                <input matInput formControlName="lastName" required>
+                <input matInput formControlName="lastName" required />
               </mat-form-field>
             </div>
             <div fxLayout="row" [fxLayoutGap]="rowGap">
               <mat-form-field fxFlex>
                 <mat-label>Numer telefonu</mat-label>
-                <input matInput formControlName="phone" required>
+                <input matInput formControlName="phone" required />
               </mat-form-field>
 
               <mat-form-field fxFlex>
                 <mat-label>Email</mat-label>
-                <input matInput formControlName="email" required>
+                <input matInput formControlName="email" required />
               </mat-form-field>
             </div>
           </div>
@@ -94,7 +113,13 @@
       <form [formGroup]="brokerForm">
         <ng-template matStepLabel>Dane o brokerze</ng-template>
         <div fxLayout="column" class="form__input">
-          <mat-radio-group class="radio__field" fxFlex fxLayout="row" fxLayoutGap="10px" formControlName="mode">
+          <mat-radio-group
+            class="radio__field"
+            fxFlex
+            fxLayout="row"
+            fxLayoutGap="10px"
+            formControlName="mode"
+          >
             <mat-radio-button value="new">Nowy</mat-radio-button>
             <mat-radio-button value="old">Pobierz z bazy</mat-radio-button>
           </mat-radio-group>
@@ -102,23 +127,24 @@
             <mat-form-field appearance="fill">
               <mat-label>Wybierz brokera</mat-label>
               <mat-select (selectionChange)="brokerSelected($event.value)">
-                <mat-option *ngFor="let broker of availableBrokers$|async"
-                            [value]="broker">{{broker.name}}</mat-option>
+                <mat-option
+                  *ngFor="let broker of availableBrokers$ | async"
+                  [value]="broker"
+                  >{{ broker.name }}</mat-option
+                >
               </mat-select>
             </mat-form-field>
           </div>
           <div *ngIf="this.brokerForm.value['mode'] === 'new'">
-
             <mat-form-field>
               <mat-label>Nazwa</mat-label>
-              <input matInput formControlName="name" required>
+              <input matInput formControlName="name" required />
             </mat-form-field>
           </div>
           <div fxLayout="row" fxLayoutAlign="end end">
             <button mat-button matStepperNext>Dalej</button>
           </div>
         </div>
-
       </form>
     </mat-step>
 
@@ -126,7 +152,13 @@
       <form [formGroup]="employeeForm">
         <ng-template matStepLabel>Dane o pracowniku</ng-template>
         <div fxLayout="column" class="form__input">
-          <mat-radio-group class="radio__field" fxFlex fxLayout="row" fxLayoutGap="10px" formControlName="mode">
+          <mat-radio-group
+            class="radio__field"
+            fxFlex
+            fxLayout="row"
+            fxLayoutGap="10px"
+            formControlName="mode"
+          >
             <mat-radio-button value="new">Nowy</mat-radio-button>
             <mat-radio-button value="old">Pobierz z bazy</mat-radio-button>
           </mat-radio-group>
@@ -134,8 +166,12 @@
             <mat-form-field appearance="fill">
               <mat-label>Wybierz pracownika</mat-label>
               <mat-select (selectionChange)="employeeSelected($event.value)">
-                <mat-option *ngFor="let employee of availableEmployees$|async"
-                            [value]="employee">{{employee.first_name}} {{employee.last_name}}</mat-option>
+                <mat-option
+                  *ngFor="let employee of availableEmployees$ | async"
+                  [value]="employee"
+                  >{{ employee.first_name }}
+                  {{ employee.last_name }}</mat-option
+                >
               </mat-select>
             </mat-form-field>
           </div>
@@ -143,12 +179,12 @@
             <div fxLayout="column">
               <mat-form-field>
                 <mat-label>Imie</mat-label>
-                <input matInput formControlName="firstName" required>
+                <input matInput formControlName="firstName" required />
               </mat-form-field>
 
               <mat-form-field>
                 <mat-label>Nazwisko</mat-label>
-                <input matInput formControlName="lastName" required>
+                <input matInput formControlName="lastName" required />
               </mat-form-field>
             </div>
           </div>
@@ -156,7 +192,6 @@
             <button mat-button matStepperNext>Dalej</button>
           </div>
         </div>
-
       </form>
     </mat-step>
 
@@ -167,15 +202,29 @@
           <div fxLayout="row" [fxLayoutGap]="rowGap">
             <mat-form-field appearance="fill">
               <mat-label>Opłata za transport</mat-label>
-              <input matInput formControlName='payForTransport' [matDatepicker]="payTrans">
-              <mat-datepicker-toggle matSuffix [for]="payTrans"></mat-datepicker-toggle>
+              <input
+                matInput
+                formControlName="payForTransport"
+                [matDatepicker]="payTrans"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="payTrans"
+              ></mat-datepicker-toggle>
               <mat-datepicker #payTrans></mat-datepicker>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
               <mat-label>Wysyłka dokumentów</mat-label>
-              <input matInput formControlName='shipDocumentsToAgency' [matDatepicker]="ship">
-              <mat-datepicker-toggle matSuffix [for]="ship"></mat-datepicker-toggle>
+              <input
+                matInput
+                formControlName="shipDocumentsToAgency"
+                [matDatepicker]="ship"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="ship"
+              ></mat-datepicker-toggle>
               <mat-datepicker #ship></mat-datepicker>
             </mat-form-field>
           </div>
@@ -187,35 +236,40 @@
 
           <mat-form-field appearance="fill">
             <mat-label>Over Fracht</mat-label>
-            <input matInput type="number" formControlName="overFracht">
+            <input matInput type="number" formControlName="overFracht" />
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Over Odprawa</mat-label>
-            <input matInput type="number" formControlName="overOdprawa">
+            <input matInput type="number" formControlName="overOdprawa" />
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Over Transport To PL</mat-label>
-            <input matInput type="number" formControlName="overTransportToPl">
+            <input matInput type="number" formControlName="overTransportToPl" />
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Over HST</mat-label>
-            <input matInput type="number" formControlName="overHST">
+            <input matInput type="number" formControlName="overHST" />
           </mat-form-field>
 
           <div fxLayout="row" fxLayoutAlign="space-between end">
             <button mat-button (click)="stepper.reset()">Reset</button>
-            <button mat-raised-button color="primary" (click)="getData()" [mat-dialog-close]="data">Dodaj</button>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="getData()"
+              [mat-dialog-close]="data"
+            >
+              Dodaj
+            </button>
           </div>
         </div>
       </form>
     </mat-step>
-
   </mat-horizontal-stepper>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Anuluj</button>
 </mat-dialog-actions>
-

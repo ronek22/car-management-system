@@ -1,34 +1,40 @@
 <div class="container">
-
-<h2 mat-dialog-title>{{customer ? "Edytuj"  : "Dodaj"}} klienta</h2>
-<mat-dialog-content>
-  <form [formGroup]="customerForm">
+  <h2 mat-dialog-title>{{ customer ? "Edytuj" : "Dodaj" }} klienta</h2>
+  <mat-dialog-content>
+    <form [formGroup]="customerForm">
       <div fxLayout="row" [fxLayoutGap]="'10px'">
-              <mat-form-field fxFlex>
-                <mat-label>Imię</mat-label>
-                <input matInput formControlName="firstName" required>
-              </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>Imię</mat-label>
+          <input matInput formControlName="firstName" required />
+        </mat-form-field>
 
-              <mat-form-field fxFlex>
-                <mat-label>Nazwisko</mat-label>
-                <input matInput formControlName="lastName" required>
-              </mat-form-field>
-            </div>
-            <div fxLayout="row" [fxLayoutGap]="'10px'">
-              <mat-form-field fxFlex>
-                <mat-label>Numer telefonu</mat-label>
-                <input matInput formControlName="phone" required>
-              </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>Nazwisko</mat-label>
+          <input matInput formControlName="lastName" required />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" [fxLayoutGap]="'10px'">
+        <mat-form-field fxFlex>
+          <mat-label>Numer telefonu</mat-label>
+          <input matInput formControlName="phone" required />
+        </mat-form-field>
 
-              <mat-form-field fxFlex>
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" required>
-              </mat-form-field>
-            </div>
-          <div fxLayout="row" fxLayoutAlign="space-between end">
-            <button mat-button mat-dialog-close>Anuluj</button>
-            <button mat-raised-button color="primary" (click)="getData()" [mat-dialog-close]="data" >{{customer ? "Edytuj"  : "Dodaj"}}</button>
-          </div>
-      </form>
-</mat-dialog-content>
+        <mat-form-field fxFlex>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between end">
+        <button mat-button mat-dialog-close>Anuluj</button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="getData()"
+          [mat-dialog-close]="data"
+        >
+          {{ customer ? "Edytuj" : "Dodaj" }}
+        </button>
+      </div>
+    </form>
+  </mat-dialog-content>
 </div>

@@ -1,19 +1,26 @@
 /* tslint:disable:no-string-literal */
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Broker, Car, Customer, Employee, Offer, Vehicle} from "../../models/models";
-import {formatDate} from "@angular/common";
-import {CarService} from "../../services/car.service";
-import {CustomerService} from "../../services/customer.service";
-import {Observable} from "rxjs";
-import {EmployeeService} from "../../services/employee.service";
-import {BrokerService} from "../../services/broker.service";
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  Broker,
+  Car,
+  Customer,
+  Employee,
+  Offer,
+  Vehicle,
+} from '../../models/models';
+import { formatDate } from '@angular/common';
+import { CarService } from '../../services/car.service';
+import { CustomerService } from '../../services/customer.service';
+import { Observable } from 'rxjs';
+import { EmployeeService } from '../../services/employee.service';
+import { BrokerService } from '../../services/broker.service';
 
 @Component({
   selector: 'app-offer-dialog',
   templateUrl: './offer-dialog.component.html',
-  styleUrls: ['./offer-dialog.component.scss']
+  styleUrls: ['./offer-dialog.component.scss'],
 })
 export class OfferDialogComponent implements OnInit {
   availableCars$: Observable<Vehicle[]>;
@@ -29,15 +36,15 @@ export class OfferDialogComponent implements OnInit {
 
   rowGap = '20px';
 
-  constructor(private fb: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data: Offer,
-              public dialogRef: MatDialogRef<OfferDialogComponent>,
-              private carService: CarService,
-              private customerService: CustomerService,
-              private employeeService: EmployeeService,
-              private brokerService: BrokerService
-  ) {
-  }
+  constructor(
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: Offer,
+    public dialogRef: MatDialogRef<OfferDialogComponent>,
+    private carService: CarService,
+    private customerService: CustomerService,
+    private employeeService: EmployeeService,
+    private brokerService: BrokerService
+  ) {}
 
   ngOnInit(): void {
     this.availableCars$ = this.carService.uniqueCars();
@@ -50,8 +57,15 @@ export class OfferDialogComponent implements OnInit {
       make: ['', Validators.required],
       model: ['', Validators.required],
       year: ['', Validators.required],
-      vin: ['', [Validators.required, Validators.pattern(
-          '^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$')]]
+      vin: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$'
+          ),
+        ],
+      ],
     });
 
     this.customerForm = this.fb.group({
@@ -59,7 +73,7 @@ export class OfferDialogComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phone: ['', Validators.required],
-      email: ['', Validators.compose([Validators.required, Validators.email])]
+      email: ['', Validators.compose([Validators.required, Validators.email])],
     });
 
     this.brokerForm = this.fb.group({
@@ -70,7 +84,7 @@ export class OfferDialogComponent implements OnInit {
     this.employeeForm = this.fb.group({
       mode: ['new'],
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required]
+      lastName: ['', Validators.required],
     });
 
     this.offerForm = this.fb.group({
@@ -80,7 +94,7 @@ export class OfferDialogComponent implements OnInit {
       overFracht: [''],
       overOdprawa: [''],
       overTransportToPl: [''],
-      overHST: ['']
+      overHST: [''],
     });
   }
 
@@ -109,37 +123,48 @@ export class OfferDialogComponent implements OnInit {
     this.data = {
       car: {
         make: {
-          name: this.carForm.value['make']
+          name: this.carForm.value['make'],
         },
         model: this.carForm.value['model'],
-        year: this.carForm.value['year']
+        year: this.carForm.value['year'],
       } as Car,
       customer: {
         first_name: this.customerForm.value['firstName'],
         last_name: this.customerForm.value['lastName'],
         phone: this.customerForm.value['phone'],
-        email: this.customerForm.value['email']
+        email: this.customerForm.value['email'],
       } as Customer,
       broker: {
-        name: this.brokerForm.value['name']
+        name: this.brokerForm.value['name'],
       } as Broker,
       employee: {
         first_name: this.employeeForm.value['firstName'],
-        last_name: this.employeeForm.value['lastName']
+        last_name: this.employeeForm.value['lastName'],
       } as Employee,
       vin: this.carForm.value['vin'],
-      pay_for_transport: this.offerForm.value['payForTransport'] ? formatDate(this.offerForm.value['payForTransport'], 'yyyy-MM-dd', 'en_US') : null,
-      ship_documents_to_agency: this.offerForm.value['shipDocumentsToAgency'] ? formatDate(this.offerForm.value['shipDocumentsToAgency'], 'yyyy-MM-dd', 'en_US') : null,
+      pay_for_transport: this.offerForm.value['payForTransport']
+        ? formatDate(
+            this.offerForm.value['payForTransport'],
+            'yyyy-MM-dd',
+            'en_US'
+          )
+        : null,
+      ship_documents_to_agency: this.offerForm.value['shipDocumentsToAgency']
+        ? formatDate(
+            this.offerForm.value['shipDocumentsToAgency'],
+            'yyyy-MM-dd',
+            'en_US'
+          )
+        : null,
       additional_data: this.offerForm.value['additionalData'],
       over_fracht: this.offerForm.value['overFracht'],
       over_odprawa: this.offerForm.value['overOdprawa'],
       over_transport_to_pl: this.offerForm.value['overTransportToPl'],
-      over_hst: this.offerForm.value['overHST']
+      over_hst: this.offerForm.value['overHST'],
     };
 
     this.dialogRef.close(this.data);
 
     // console.log(this.data);
   }
-
 }

@@ -10,7 +10,6 @@ export interface PaginationOffer {
 //   limit: number;
 // }
 
-
 export interface Pagination {
   page: number;
   size: number;
@@ -44,7 +43,6 @@ export interface EditOffer {
   over_transport_to_pl: number;
   over_hst: number;
 }
-
 
 export interface Car {
   id?: number;

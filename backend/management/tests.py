@@ -5,7 +5,6 @@ from management.models import Make, Car, Customer
 
 
 class CarTestCase(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         cls.make = Make.objects.create(name="AUDI")
@@ -19,7 +18,7 @@ class CarTestCase(TestCase):
             first_name="Jan",
             last_name="Kowalski",
             phone="505333120",
-            email="admin@admin.com"
+            email="admin@admin.com",
         )
 
         self.assertEqual(customer.first_name, "Jan")

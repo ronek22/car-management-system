@@ -8,8 +8,14 @@ from rest_framework.response import Response
 
 from conf.core import MyPagination, LimitPagination
 from management.models import Customer, Offer, Employee, Broker, Car, Make
-from management.serializers import OfferSerializer, CustomerSerializer, EmployeeSerializer, BrokerSerializer, \
-    CarSerializer, MakeSerializer
+from management.serializers import (
+    OfferSerializer,
+    CustomerSerializer,
+    EmployeeSerializer,
+    BrokerSerializer,
+    CarSerializer,
+    MakeSerializer,
+)
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
@@ -36,11 +42,10 @@ class CarViewSet(viewsets.ModelViewSet):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 
-    @action(detail=False, methods=['get'], url_path='all_models')
+    @action(detail=False, methods=["get"], url_path="all_models")
     def all_models(self, request):
-        cars = Car.objects.values('model', brand=F('make__name')).distinct().order_by()
+        cars = Car.objects.values("model", brand=F("make__name")).distinct().order_by()
         return Response(cars, 200)
-
 
 
 class OfferViewSet(viewsets.ModelViewSet):
@@ -57,6 +62,3 @@ class OfferViewSet(viewsets.ModelViewSet):
 # class OfferCreateView(generics.CreateAPIView):
 #     queryset = Offer.objects.all()
 #     serializer_class = OfferSerializer
-
-
-
