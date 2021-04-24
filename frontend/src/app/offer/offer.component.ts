@@ -31,20 +31,20 @@ export class OfferComponent implements OnInit, AfterViewInit {
   pagination: Pagination;
   columns: any[] = [
     // {name: 'ID', prop: 'id', sortable: false},
-    {prop: 'car.year', name: 'Rocznik', sortable: true},
-    {prop: 'car.make.name', name: 'Marka', sortable: true},
-    {prop: 'car.model', name: 'Model', sortable: true},
-    {prop: 'vin', name: 'VIN', sortable: true},
-    {prop: 'client', name: 'Klient', sortable: true},
-    {prop: 'customer.email', name: 'Email', sortable: true},
-    {prop: 'pay_for_transport', name: 'Zapłata za transport', sortable: false},
-    {prop: 'ship_documents_to_agency', name: 'Wysyłka dokumentów agencja', sortable: false},
-    {prop: 'broker.name', name: 'Broker', sortable: false},
-    {prop: 'over_fracht', name: 'Over fracht', sortable: false},
-    {prop: 'over_odprawa', name: 'Over odprawa', sortable: false},
-    {prop: 'over_transport_to_pl', name: 'Over transport to PL', sortable: false},
-    {prop: 'employeeFullname', name: 'Kupił', sortable: false},
-    {prop: 'additional_data', name: 'Informacje dodatkowe', sortable: false},
+    {prop: 'car.year', name: 'Rocznik', width: 100, sortable: true},
+    {prop: 'car.make.name', name: 'Marka', width: 100, sortable: true},
+    {prop: 'car.model', name: 'Model', width:150, sortable: true},
+    {prop: 'vin', name: 'VIN', width: 200, sortable: true},
+    {prop: 'client', name: 'Klient', width:200, sortable: true},
+    {prop: 'customer.email', name: 'Email', width:250, sortable: true},
+    {prop: 'pay_for_transport', name: 'Zapłata za transport', width: 150, sortable: false},
+    {prop: 'ship_documents_to_agency', name: 'Wysyłka dokumentów', width: 150, sortable: false},
+    {prop: 'broker.name', name: 'Broker', width:150, sortable: false},
+    {prop: 'over_fracht', name: 'Over fracht', width: 150,  sortable: false},
+    {prop: 'over_odprawa', name: 'Over odprawa', width: 150, sortable: false},
+    {prop: 'over_transport_to_pl', name: 'Over transport to PL', width: 150, sortable: false},
+    {prop: 'employeeFullname', name: 'Kupił', width: 200, sortable: false},
+    {prop: 'additional_data', name: 'Informacje dodatkowe', width: 200, sortable: false},
 
   ];
 
@@ -72,7 +72,7 @@ export class OfferComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.ngxDatatable.columnMode = ColumnMode.force;
+    // this.ngxDatatable.columnMode = ColumnMode.force;
   }
 
   singleSelectCheck = (row: any) => {

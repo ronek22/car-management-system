@@ -65,3 +65,12 @@ mat-step-header {
   background-color: #ccc9de !important;
   color: white !important;
 }
+
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  vertical-align: middle !important;
+}
+
