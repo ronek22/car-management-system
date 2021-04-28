@@ -68,3 +68,6 @@ class Offer(models.Model):
         max_digits=10, decimal_places=2, null=True, blank=True
     )
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ["id", "pay_for_transport", "car__make__name"]

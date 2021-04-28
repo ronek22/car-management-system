@@ -74,3 +74,9 @@ mat-step-header {
   vertical-align: middle !important;
 }
 
+:root {
+  --color-primary: #{mat-color($nga-primary)};
+  --color-accent: #{mat-color($nga-accent)};
+  --color-warn: #{mat-color($nga-warn)};
+}
+

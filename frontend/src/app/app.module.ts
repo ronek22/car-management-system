@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +41,8 @@ import { EditCustomerComponent } from './offer/offer-detail/edit-customer/edit-c
 import { EditEmployeeComponent } from './offer/offer-detail/edit-employee/edit-employee.component';
 import { EditBrokerComponent } from './offer/offer-detail/edit-broker/edit-broker.component';
 import { EditVehicleComponent } from './offer/offer-detail/edit-vehicle/edit-vehicle.component';
+import { LoginComponent } from './login/login.component';
+import {JwtInterceptor} from "./helpers/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { EditVehicleComponent } from './offer/offer-detail/edit-vehicle/edit-veh
     EditEmployeeComponent,
     EditBrokerComponent,
     EditVehicleComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +98,11 @@ import { EditVehicleComponent } from './offer/offer-detail/edit-vehicle/edit-veh
     MatRadioModule,
     MatSelectModule,
   ],
-  providers: [MatDatepickerModule],
+  providers: [
+    MatDatepickerModule,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true}
+
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

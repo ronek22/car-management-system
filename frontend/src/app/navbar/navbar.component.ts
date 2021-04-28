@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../services/authentication.service";
+import {User} from "../models/models";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-navbar',
@@ -14,5 +18,19 @@ export class NavbarComponent implements OnInit {
     { label: 'Brokerzy', icon: 'support_agent', routerLink: '/brokers' },
   ];
 
-  ngOnInit(): void {}
+  isLoggedIn$: Observable<User>;
+
+    constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {}
+
+  ngOnInit(): void {
+      this.isLoggedIn$ = this.authenticationService.currentUser;
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
 }

@@ -1,0 +1,39 @@
+
+.signin-content {
+  padding: 120px 2rem;
+}
+.full-width-input {
+  width: 100%;
+}
+
+.login__btn {
+  padding: 10px;
+    width: 100%;
+
+}
+
+.mat-card-header {
+  background-color: #f3f3f3 !important;
+  padding: 20px 0px 5px 20px !important;
+  margin-bottom: 10px !important;
+}
+
+.mat-card {
+  max-width: 400px;
+  padding: 0 !important;
+  text-align: center;
+  margin: 2em auto;
+}
+
+.mat-card-content {
+  padding: 30px 20px 0 20px !important;
+}
+
+.mat-card-actions {
+  padding: 0px !important;
+}
+
+:host {
+  background-color: var(--color-primary) !important;
+  height: 100%;
+}

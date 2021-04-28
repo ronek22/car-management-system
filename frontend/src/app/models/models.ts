@@ -76,3 +76,14 @@ export interface Employee {
   first_name: string;
   last_name: string;
 }
+
+
+export class User {
+  id: number;
+  username: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  token?: string;
+  refreshToken?: string;
+}
