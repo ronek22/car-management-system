@@ -1,40 +1,6 @@
-<!--<div fxLayout="column" fxLayoutAlign="end">-->
-<!--  <mat-card class="login__card" fxFlex>-->
-<!--    <mat-card-title class="login__title">Logowanie</mat-card-title>-->
-<!--    <mat-card-content fxLayout="column" fxLayoutAlign="space-evenly">-->
-
-<!--      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->
-<!--        <mat-form-field appearance="fill">-->
-<!--          <mat-label>Nazwa użytkownika</mat-label>-->
-<!--          <input type="text" matInput formControlName="username">-->
-<!--          <mat-error>*Wymagane</mat-error>-->
-<!--        </mat-form-field>-->
-
-<!--        <mat-form-field appearance="fill">-->
-<!--          <mat-label>Hasło</mat-label>-->
-<!--          <input type="password" matInput formControlName="password">-->
-<!--          <mat-error>*Wymagane</mat-error>-->
-
-<!--        </mat-form-field>-->
-
-<!--        <p *ngIf="error">{{ error.error.detail }}</p>-->
-
-<!--        <div fxLayout="row">-->
-<!--          <button [disabled]="loading"  class="submit__button" type="submit" mat-raised-button color="warn" fxFlex>-->
-<!--            Zaloguj-->
-<!--          </button>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </mat-card-content>-->
-<!--  </mat-card>-->
-<!--</div>-->
-
-
 <div class="signin-content">
   <mat-card class="mat-elevation-z7">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
-
       <mat-card-content fxLayout="column" fxLayoutGap="5px">
         <mat-form-field appearance="fill">
           <input matInput placeholder="User" formControlName="username" required>
@@ -50,12 +16,10 @@
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
-        <button class="login__btn" mat-raised-button color="accent">
+        <button class="login__btn" mat-raised-button [loading]="loading" color="accent">
           <mat-icon>login</mat-icon>
         </button>
-
       </mat-card-actions>
     </form>
-
   </mat-card>
 </div>

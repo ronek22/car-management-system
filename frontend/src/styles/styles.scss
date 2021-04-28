@@ -78,5 +78,28 @@ mat-step-header {
   --color-primary: #{mat-color($nga-primary)};
   --color-accent: #{mat-color($nga-accent)};
   --color-warn: #{mat-color($nga-warn)};
+  --color-success: #{mat-color($nga-success)};
 }
 
+
+.mat-loading .mat-button-wrapper {
+  visibility: hidden;
+}
+
+.mat-loading .mat-progress-spinner {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(50% - 10px);
+}
+
+.error-snackbar {
+  background: var(--color-warn);
+  color: white;
+  text-align: center;
+}
+
+.success-snackbar {
+  background: var(--color-success);
+  color: white;
+  text-align: center;
+}

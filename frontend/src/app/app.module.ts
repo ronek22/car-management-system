@@ -43,6 +43,8 @@ import { EditBrokerComponent } from './offer/offer-detail/edit-broker/edit-broke
 import { EditVehicleComponent } from './offer/offer-detail/edit-vehicle/edit-vehicle.component';
 import { LoginComponent } from './login/login.component';
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
+import { MatButtonLoadingDirective } from './helpers/mat-button-loading.directive';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import {JwtInterceptor} from "./helpers/jwt.interceptor";
     EditBrokerComponent,
     EditVehicleComponent,
     LoginComponent,
+    MatButtonLoadingDirective,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +100,8 @@ import {JwtInterceptor} from "./helpers/jwt.interceptor";
     MatCardModule,
     MatRadioModule,
     MatSelectModule,
+    MatSnackBarModule,
+
   ],
   providers: [
     MatDatepickerModule,

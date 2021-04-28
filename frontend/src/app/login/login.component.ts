@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../services/authentication.service';
 import {first} from 'rxjs/operators';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private _snackBar: MatSnackBar
   ) {
   }
 
@@ -48,11 +50,12 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          this._snackBar.open("Successull login", "", {duration: 3000, panelClass: ['success-snackbar']})
           this.router.navigate([this.returnUrl]);
         },
         error => {
           this.error = error;
-          console.log(error);
+          this._snackBar.open(error.error.detail,"", {duration: 3000, panelClass: ['error-snackbar']});
           this.loading = false;
         }
       );
