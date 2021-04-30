@@ -38,16 +38,6 @@ body {
   margin: 0 auto;
 }
 
-//html, body {
-//  height: 100%;
-//    background-color: #8c8c8c;
-//
-//}
-//
-//body {
-//  margin: 0;
-//  font-family: Roboto, "Helvetica Neue", sans-serif;
-//}
 
 mat-toolbar.mat-toolbar mat-form-field.mat-form-field {
   font-size: 12px;
@@ -79,6 +69,7 @@ mat-step-header {
   --color-accent: #{mat-color($nga-accent)};
   --color-warn: #{mat-color($nga-warn)};
   --color-success: #{mat-color($nga-success)};
+  --color-edit: #{mat-color($nga-edit)}
 }
 
 
@@ -102,4 +93,14 @@ mat-step-header {
   background: var(--color-success);
   color: white;
   text-align: center;
+}
+
+.mat-buttonSuccess{
+    background-color: var(--color-success);
+    color: #fff;
+}
+
+.mat-buttonEdit {
+  background-color: var(--color-edit);
+  color: #000;
 }

@@ -14,6 +14,16 @@
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
         <button
           mat-raised-button
+          color="buttonEdit"
+          [disabled]="selected.length === 0"
+          (click)="editOffer()"
+          >
+          <mat-icon>edit</mat-icon>
+          Edytuj
+        </button>
+
+        <button
+          mat-raised-button
           color="primary"
           [disabled]="selected.length === 0"
           [routerLink]="['/offer', this.selected[0]?.id]"
@@ -51,7 +61,6 @@
   [selected]="selected"
   [selectCheck]="singleSelectCheck"
   [selectionType]="SelectionType.single"
-  (select)="onSelect($event)"
   (page)="setPage($event)"
 >
 </ngx-datatable>

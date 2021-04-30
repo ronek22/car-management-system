@@ -9,6 +9,7 @@ $nga-accent: mat-palette($mat-red, A700, A200, 800);
 // The warn palette is optional (defaults to red).
 $nga-warn: mat-palette($mat-red);
 $nga-success: mat-palette($mat-green);
+$nga-edit: mat-palette($mat-yellow);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $nga-theme: mat-light-theme($nga-primary, $nga-accent, $nga-warn);
